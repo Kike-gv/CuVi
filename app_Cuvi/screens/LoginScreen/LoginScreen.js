@@ -8,12 +8,6 @@ const LoginScreen = ({ navigation }) => {
     const [nameInput, setNameInput] = useState('');
     const [passInput, setPassInput] = useState('');
 
-    const signInAsync = async () => {
-        console.log("TCL: signInAsync -> navigation", navigation)
-        await AsyncStorage.setItem('userToken', 'abc');
-        navigation.navigate('ApplicationScreens');
-    };
-
     return (
         <ImageBackground source={{ uri: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' }} style={styles.loginImageContainer}>
             <View style={styles.loginContainer}>
@@ -33,11 +27,7 @@ const LoginScreen = ({ navigation }) => {
                     placeholderTextColor={'black'}
                 />
                 <Text style={styles.loginContainer_text}>O</Text>
-                <TouchableOpacity><Text style={styles.loginContainer_text}>Crea tu cuenta</Text></TouchableOpacity>
-                <Button
-                    title="Ir a Inicio directamente"
-                    onPress={signInAsync}
-                />
+                <TouchableOpacity onPress={() => { navigation.navigate('SignIn') }}><Text style={styles.loginContainer_text}>Crea tu cuenta</Text></TouchableOpacity>
             </View>
         </ImageBackground>
     );
@@ -61,7 +51,7 @@ const styles = StyleSheet.create({
         marginBottom: 16
     },
     loginContainer_input: {
-        width:'100%',
+        width: '100%',
         height: 50,
         backgroundColor: 'rgba(255,255,255,0.8)',
         paddingLeft: 16,

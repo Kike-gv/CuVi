@@ -10,6 +10,7 @@ import SettingsScreen from '../SettingsScreen';
 import DetailScreen from '../DetailScreen';
 import LoginScreen from '../LoginScreen';
 import AuthLoadingScreen from '../AuthLoadingScreen';
+import SignInScreen from '../SignInScreen';
 
 
 
@@ -63,6 +64,29 @@ const HomeStack = createStackNavigator({
     },
 });
 
+const LoginStack = createStackNavigator({
+    'Login': {
+        screen: LoginScreen,
+        navigationOptions: () => ({
+            headerShown: false,
+        }),
+    },
+    'SignIn': {
+        screen: SignInScreen,
+        navigationOptions: () => ({
+            title: `Crea tu cuenta`,
+            headerBackTitle: null,
+            headerStyle: {
+                backgroundColor: 'black',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+        }),
+    },
+});
+
 const TabNavigator = createBottomTabNavigator({
     'Inicio': HomeStack,
     'Ajustes': SettingsScreen
@@ -94,7 +118,7 @@ const TabNavigator = createBottomTabNavigator({
 const switchNavigator = createSwitchNavigator({
     'AuthLoading': AuthLoadingScreen,
     'ApplicationScreens': TabNavigator,
-    'Auth': LoginScreen,
+    'Auth': LoginStack,
 },
     {
         initialRouteName: 'AuthLoading',
