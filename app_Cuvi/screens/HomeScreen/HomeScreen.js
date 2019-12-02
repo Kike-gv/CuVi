@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Button, AsyncStorage } from 'react-native';
 
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { actualizeInputValue } from '../../redux/actions/InputActions';
@@ -8,9 +8,16 @@ const HomeScreen = ({ navigation }) => {
     const actualizeInput = useSelector(state => state.inputState.actualizeInput);
     const dispatch = useDispatch();
 
+    const signOutAsync = async () => {
+        await AsyncStorage.clear();
+        navigation.navigate('Auth');
+    };
+
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Una pagina home</Text>
+
+            <Button title="I'm done, sign me out" onPress={signOutAsync} />
             <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 16, paddingRight: 16 }}
                 placeholder='Escribe algo para que redux lo actualize'
