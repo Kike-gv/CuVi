@@ -89,7 +89,7 @@ const LoginStack = createStackNavigator({
 
 const TabNavigator = createBottomTabNavigator({
     'Inicio': HomeStack,
-    'Ajustes': SettingsScreen
+    'Mi cuenta': SettingsScreen
 },
     {
         defaultNavigationOptions: ({ navigation }) => ({
@@ -99,8 +99,8 @@ const TabNavigator = createBottomTabNavigator({
                 let iconName;
                 if (routeName === 'Inicio') {
                     iconName = `ios-home`;
-                } else if (routeName === 'Ajustes') {
-                    iconName = `ios-options`;
+                } else if (routeName === 'Mi cuenta') {
+                    iconName = `md-person`;
                     IconComponent = HomeIconWithBadge;
                 }
 

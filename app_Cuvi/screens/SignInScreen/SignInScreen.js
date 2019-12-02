@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, ImageBackground, Button, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
+import { Text, View, TextInput, Image, ImageBackground, Button, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
 
-const SignInScreen = ({navigation}) => {
+const SignInScreen = ({ navigation }) => {
     const [nameInput, setNameInput] = useState('');
     const [passIgnput, setPassIgnput] = useState('');
     const [emailInput, setEmailInput] = useState('');
