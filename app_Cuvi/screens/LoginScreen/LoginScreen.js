@@ -8,6 +8,11 @@ const LoginScreen = ({ navigation }) => {
     const [nameInput, setNameInput] = useState('');
     const [passInput, setPassInput] = useState('');
 
+    const signInAsync = async () => {
+        await AsyncStorage.setItem('userToken', 'abc');
+        navigation.navigate('ApplicationScreens');
+    };
+
     return (
         <ImageBackground source={{ uri: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' }} style={styles.loginImageContainer}>
             <View style={styles.loginContainer}>
@@ -26,6 +31,8 @@ const LoginScreen = ({ navigation }) => {
                     secureTextEntry={true}
                     placeholderTextColor={'black'}
                 />
+                <TouchableOpacity onPress={signInAsync} style={styles.loginContainer_button}><Text style={styles.loginContainer_button_text}>Accede a tu cuenta</Text></TouchableOpacity>
+            
                 <Text style={styles.loginContainer_text}>O</Text>
                 <TouchableOpacity onPress={() => { navigation.navigate('SignIn') }}><Text style={styles.loginContainer_text}>Crea tu cuenta</Text></TouchableOpacity>
             </View>
@@ -57,9 +64,22 @@ const styles = StyleSheet.create({
         paddingLeft: 16,
         paddingRight: 16,
         fontSize: 16,
-        borderRadius: 50,
+        borderRadius: 10,
         color: 'black',
         marginBottom: 16
+    },
+    loginContainer_button: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        backgroundColor: '#c78021',
+        height: 50,
+        borderRadius: 10,
+        marginBottom:16
+    },
+    loginContainer_button_text: {
+        color: 'white',
+        fontSize: 16
     }
 });
 

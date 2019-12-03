@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         paddingLeft: 16,
         paddingRight: 16,
         fontSize: 16,
-        borderRadius: 50,
+        borderRadius: 10,
         color: 'black',
         marginBottom: 16
     },
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: '#c78021',
         height: 50,
-        borderRadius: 50,
+        borderRadius: 10,
     },
     signInContainer_button_text: {
         color: 'white',
