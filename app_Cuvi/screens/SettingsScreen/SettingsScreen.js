@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, Image, ImageBackground, Button, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-// import * as Permissions from 'expo-permissions';
+import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
 // import { Camera } from 'expo-camera'
 
 
 const SettingsScreen = ({ navigation, }) => {
     // const [hasCameraPermission, setHasCameraPermission] = useState(null);
     // const [type, setType] = useState(Camera.Constants.Type.back);
+    const [profileImage, setProfileImage] = useState('https://media.vandalsports.com/i/640x360/10-2019/20191028161434_1.jpg');
+
     let IconComponent = Ionicons;
 
     const signOutAsync = async () => {
@@ -16,16 +20,43 @@ const SettingsScreen = ({ navigation, }) => {
         navigation.navigate('Auth');
     };
 
-    // useEffect(async () => {
-    //     const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    //     setHasCameraPermission(status === 'granted');
-    // }, []);
+    async function asyncPermissions(){
+        // const { status } = await Permissions.askAsync(Permissions.CAMERA);
+        // setHasCameraPermission(status === 'granted');
+        if (Constants.platform.ios) {
+            const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+            if (status !== 'granted') {
+                alert('Sorry, we need camera roll permissions to make this work!');
+            }
+        }
+
+    }
+
+    useEffect(() => {
+        asyncPermissions();
+    }, []);
+
+    const pickImge = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 4],
+            quality: 1
+        });
+
+
+        if (!result.cancelled) {
+            const ImgUri = result.uri;
+            setProfileImage(ImgUri);
+        }
+    }
+
 
     return (
         <View style={styles.settingsContainer}>
             <View style={styles.settingsContainer_userContainer}>
                 <View style={styles.settingsContainer_userContainer_photoCover}>
-                    <Image style={styles.settingsContainer_userContainer_userPhoto} source={{ uri: 'https://media.vandalsports.com/i/640x360/10-2019/20191028161434_1.jpg' }} />
+                    <Image style={styles.settingsContainer_userContainer_userPhoto} source={{ uri: profileImage }} />
                 </View>
                 <Text style={styles.settingsContainer_userContainer_userName}>Thor Odjnson</Text>
                 <Text style={styles.settingsContainer_userContainer_userJob}>Dios del trueno</Text>
@@ -40,7 +71,7 @@ const SettingsScreen = ({ navigation, }) => {
                 </View>
             </View>
 
-            <TouchableOpacity style={styles.settingsContainer_userSettings}>
+            <TouchableOpacity style={styles.settingsContainer_userSettings} onPress={pickImge}>
                 <Text>Cambia tu foto de perfil</Text>
                 <IconComponent name={'md-image'} size={25} color={'#383838'} />
             </TouchableOpacity>
