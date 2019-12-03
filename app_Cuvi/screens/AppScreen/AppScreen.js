@@ -98,7 +98,7 @@ const TabNavigator = createBottomTabNavigator({
                 let IconComponent = Ionicons;
                 let iconName;
                 if (routeName === 'Inicio') {
-                    iconName = `ios-home`;
+                    iconName = `md-home`;
                 } else if (routeName === 'Mi cuenta') {
                     iconName = `md-person`;
                     IconComponent = HomeIconWithBadge;
