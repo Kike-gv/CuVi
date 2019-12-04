@@ -90,15 +90,12 @@ const CustomDataScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     dataContainer: {
-        backgroundColor: '#eeeeee',
+        backgroundColor: 'white',
         padding: 16,
         paddingTop: 32,
         paddingBottom: 0
     },
     dataContainer_block: {
-        backgroundColor: '#ffffff',
-        // borderColor: '#949494',
-        // borderWidth: 1,
         borderRadius: 4,
         padding: 8,
         marginBottom: 16

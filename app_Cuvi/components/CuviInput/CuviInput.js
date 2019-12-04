@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, ImageBackground, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
+import { Text, View, TextInput, StyleSheet } from 'react-native';
 
 
 const CuviInput = ({ placeholder, typeInput, textColor, background }) => {
@@ -19,9 +19,18 @@ const CuviInput = ({ placeholder, typeInput, textColor, background }) => {
                 borderRadius: 10,
                 color: textColor,
                 marginBottom: 16,
+                marginTop: 12,
                 borderWidth: 1,
                 borderColor: '#383838'
             },
+            cuviInput_text: {
+                position: 'absolute',
+                left: 5,
+                color: '#c78021',
+                fontSize: 10,
+                backgroundColor: 'white',
+                padding: 3
+            }
 
         })
         :
@@ -35,8 +44,17 @@ const CuviInput = ({ placeholder, typeInput, textColor, background }) => {
                 fontSize: 16,
                 borderRadius: 10,
                 color: textColor,
+                marginTop: 12,
                 marginBottom: 16
             },
+            cuviInput_text: {
+                position: 'absolute',
+                left: 5,
+                color: '#c78021',
+                fontSize: 10,
+                backgroundColor: 'white',
+                padding: 3
+            }
 
         })
         ;
@@ -44,47 +62,59 @@ const CuviInput = ({ placeholder, typeInput, textColor, background }) => {
     switch (typeInput) {
         case 'password':
             return (
-                <TextInput
-                    style={styles.cuviInput}
-                    placeholder={placeholder}
-                    onChangeText={() => setNameInput({ nameInput })}
-                    value={nameInput}
-                    secureTextEntry={true}
-                    placeholderTextColor={textColor}
-                />
+                <View style={{ position: 'relative' }}>
+                    <TextInput
+                        style={styles.cuviInput}
+                        placeholder={placeholder}
+                        onChangeText={() => setNameInput({ nameInput })}
+                        value={nameInput}
+                        secureTextEntry={true}
+                        placeholderTextColor={textColor}
+                    />
+                    <Text style={styles.cuviInput_text}>{placeholder}</Text>
+                </View>
             );
         case 'email-address':
             return (
-                <TextInput
-                    style={styles.cuviInput}
-                    placeholder={placeholder}
-                    onChangeText={() => setNameInput({ nameInput })}
-                    value={nameInput}
-                    keyboardType={typeInput}
-                    placeholderTextColor={textColor}
-                />
+                <View style={{ position: 'relative' }}>
+                    <TextInput
+                        style={styles.cuviInput}
+                        placeholder={placeholder}
+                        onChangeText={() => setNameInput({ nameInput })}
+                        value={nameInput}
+                        keyboardType={typeInput}
+                        placeholderTextColor={textColor}
+                    />
+                    <Text style={styles.cuviInput_text}>{placeholder}</Text>
+                </View>
             );
         case 'multiline':
             return (
-                <TextInput
-                    style={styles.cuviInput}
-                    placeholder={placeholder}
-                    onChangeText={() => setNameInput({ nameInput })}
-                    multiline
-                    numberOfLines={5}
-                    value={nameInput}
-                    placeholderTextColor={textColor}
-                />
+                <View style={{ position: 'relative' }}>
+                    <TextInput
+                        style={styles.cuviInput}
+                        placeholder={placeholder}
+                        onChangeText={() => setNameInput({ nameInput })}
+                        multiline
+                        numberOfLines={5}
+                        value={nameInput}
+                        placeholderTextColor={textColor}
+                    />
+                    <Text style={styles.cuviInput_text}>{placeholder}</Text>
+                </View>
             );
         default:
             return (
-                <TextInput
-                    style={styles.cuviInput}
-                    placeholder={placeholder}
-                    onChangeText={() => setNameInput({ nameInput })}
-                    value={nameInput}
-                    placeholderTextColor={textColor}
-                />
+                <View style={{ position: 'relative' }}>
+                    <TextInput
+                        style={styles.cuviInput}
+                        placeholder={placeholder}
+                        onChangeText={() => setNameInput({ nameInput })}
+                        value={nameInput}
+                        placeholderTextColor={textColor}
+                    />
+                    <Text style={styles.cuviInput_text}>{placeholder}</Text>
+                </View>
             );
 
     }
