@@ -4,7 +4,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const CuviButton = ({ name, icon, textColor, bgColor, clickedEvent }) => {
     let IconComponent = Ionicons;
-    console.log("TCL: CuviButton -> icon", icon)
 
     const styles = StyleSheet.create({
         cuviButtonWithIcon: {

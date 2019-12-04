@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, TouchableOpacity, Button, AsyncStorage } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { actualizeInputValue } from '../../redux/actions/InputActions';
