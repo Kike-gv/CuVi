@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput, Image, ImageBackground, Button, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
 import UncontrolledColorPicker from '../../components/ColorPicker';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,7 +9,8 @@ import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 // import { Camera } from 'expo-camera'
 
-import UserCard from '../../components/UserCard'
+import UserCard from '../../components/UserCard';
+import CuviButton from '../../components/CuviButton';
 
 
 const SettingsScreen = ({ navigation, }) => {
@@ -61,16 +62,11 @@ const SettingsScreen = ({ navigation, }) => {
             <UserCard profileImage={profileImage} />
 
             <UncontrolledColorPicker />
+            
+            <CuviButton name='Cambia tu foto de perfil' icon='md-image' textColor='#383838' bgColor='rgba(199, 128, 33, 0.25)' clickedEvent={pickImge}  />
 
-            <TouchableOpacity style={styles.settingsContainer_userSettings} onPress={pickImge}>
-                <Text>Cambia tu foto de perfil</Text>
-                <IconComponent name={'md-image'} size={25} color={'#383838'} />
-            </TouchableOpacity>
+            <CuviButton name='Log out' icon='md-exit' textColor='#383838' bgColor='rgba(199, 128, 33, 0.25)' clickedEvent={signOutAsync}  />
 
-            <TouchableOpacity style={styles.settingsContainer_userSettings} onPress={signOutAsync}>
-                <Text>Log out</Text>
-                <IconComponent name={'md-exit'} size={25} color={'#383838'} />
-            </TouchableOpacity>
             {/* {hasCameraPermission !== null && hasCameraPermission !== false &&
                 <View style={{ flex: 1 }}>
                     <Camera style={{ flex: 1 }} type={type}>
@@ -108,16 +104,6 @@ const styles = StyleSheet.create({
         padding: 16,
         paddingTop: 32
     },
-    settingsContainer_userSettings: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '100%',
-        borderRadius: 10,
-        backgroundColor: 'rgba(199, 128, 33, 0.25)',
-        padding: 16,
-        marginBottom: 16,
-    }
 });
 
 export default SettingsScreen;
