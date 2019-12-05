@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         marginBottom: 32
     },
     dataContainer_block_title: {
-        color: '#949494',
+        color: '#383838',
         fontSize: 20,
         marginBottom: 16,
         marginTop:8
