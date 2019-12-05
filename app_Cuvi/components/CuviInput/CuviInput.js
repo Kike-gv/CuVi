@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, TextInput, StyleSheet } from 'react-native';
 
 
-const CuviInput = ({ placeholder, typeInput, textColor, background,showLabel }) => {
+const CuviInput = ({label, placeholder, typeInput, textColor, background,showLabel }) => {
     const [nameInput, setNameInput] = useState('');
 
     let styles;
@@ -25,7 +25,7 @@ const CuviInput = ({ placeholder, typeInput, textColor, background,showLabel }) 
             },
             cuviInput_text: {
                 position: 'absolute',
-                left: 5,
+                left: 13,
                 color: '#c78021',
                 fontSize: 10,
                 backgroundColor: 'white',
@@ -49,7 +49,7 @@ const CuviInput = ({ placeholder, typeInput, textColor, background,showLabel }) 
             },
             cuviInput_text: {
                 position: 'absolute',
-                left: 5,
+                left: 13,
                 color: '#c78021',
                 fontSize: 10,
                 backgroundColor: 'white',
@@ -71,7 +71,7 @@ const CuviInput = ({ placeholder, typeInput, textColor, background,showLabel }) 
                         secureTextEntry={true}
                         placeholderTextColor={textColor}
                     />
-                    {showLabel && <Text style={styles.cuviInput_text}>{placeholder}</Text>}
+                    {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
                 </View>
             );
         case 'email-address':
@@ -85,7 +85,7 @@ const CuviInput = ({ placeholder, typeInput, textColor, background,showLabel }) 
                         keyboardType={typeInput}
                         placeholderTextColor={textColor}
                     />
-                    {showLabel && <Text style={styles.cuviInput_text}>{placeholder}</Text>}
+                    {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
                 </View>
             );
         case 'multiline':
@@ -100,7 +100,7 @@ const CuviInput = ({ placeholder, typeInput, textColor, background,showLabel }) 
                         value={nameInput}
                         placeholderTextColor={textColor}
                     />
-                    {showLabel && <Text style={styles.cuviInput_text}>{placeholder}</Text>}
+                    {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
                 </View>
             );
         default:
@@ -113,7 +113,7 @@ const CuviInput = ({ placeholder, typeInput, textColor, background,showLabel }) 
                         value={nameInput}
                         placeholderTextColor={textColor}
                     />
-                    {showLabel && <Text style={styles.cuviInput_text}>{placeholder}</Text>}
+                    {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
                 </View>
             );
 
