@@ -80,7 +80,7 @@ const CustomDataScreen = ({ navigation }) => {
 
 
                 <View style={styles.dataContainer_block}>
-                    <Text style={styles.dataContainer_block_title}>Habilidades clave (Hasta 6)</Text>
+                    <Text style={styles.dataContainer_block_title}>Habilidades clave (Máx. 6)</Text>
                     <View>
                         <CuviInput background='noBackground' showLabel label='Habilidad' placeholder='primeros auxilios' textColor='#949494' typeInput='text' />
                     </View>
@@ -90,7 +90,7 @@ const CustomDataScreen = ({ navigation }) => {
 
 
                 <View style={styles.dataContainer_block}>
-                    <Text style={styles.dataContainer_block_title}>Intereses y hobbies (Hasta 6)</Text>
+                    <Text style={styles.dataContainer_block_title}>Hobbies (Máx. 6)</Text>
                     <View>
                         <CuviInput background='noBackground' showLabel label='Hobby' placeholder='Viajar' textColor='#949494' typeInput='text' />
                     </View>
@@ -104,6 +104,7 @@ const CustomDataScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     dataContainer: {
+        backgroundColor: 'rgba(0,0,0,0.5)',
         paddingRight: 0,
         paddingTop: 32,
         paddingLeft:32,
