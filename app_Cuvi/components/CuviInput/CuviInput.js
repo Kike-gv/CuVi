@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, StyleSheet } from 'react-native';
+import { Text, View, TextInput, StyleSheet, inputValue } from 'react-native';
 
 
-const CuviInput = ({label, placeholder, typeInput, textColor, background,showLabel }) => {
+const CuviInput = ({ id, label, placeholder, inputValue, typeInput, textColor, background, showLabel }) => {
     const [nameInput, setNameInput] = useState('');
 
     let styles;
-
     background !== undefined ?
         styles = StyleSheet.create({
             cuviInput: {
@@ -59,6 +58,11 @@ const CuviInput = ({label, placeholder, typeInput, textColor, background,showLab
         })
         ;
 
+    const setCustomInput = (text) => {
+        setNameInput({ text });
+        inputValue(text,id);
+    }
+
     switch (typeInput) {
         case 'password':
             return (
@@ -66,7 +70,9 @@ const CuviInput = ({label, placeholder, typeInput, textColor, background,showLab
                     <TextInput
                         style={styles.cuviInput}
                         placeholder={placeholder}
-                        onChangeText={() => setNameInput({ nameInput })}
+                        onChangeText={(text) => {
+                            setCustomInput(text);
+                        }}
                         value={nameInput}
                         secureTextEntry={true}
                         placeholderTextColor={textColor}
@@ -80,7 +86,9 @@ const CuviInput = ({label, placeholder, typeInput, textColor, background,showLab
                     <TextInput
                         style={styles.cuviInput}
                         placeholder={placeholder}
-                        onChangeText={() => setNameInput({ nameInput })}
+                        onChangeText={(text) => {
+                            setCustomInput(text);
+                        }}
                         value={nameInput}
                         keyboardType={typeInput}
                         placeholderTextColor={textColor}
@@ -94,7 +102,9 @@ const CuviInput = ({label, placeholder, typeInput, textColor, background,showLab
                     <TextInput
                         style={styles.cuviInput}
                         placeholder={placeholder}
-                        onChangeText={() => setNameInput({ nameInput })}
+                        onChangeText={(text) => {
+                            setCustomInput(text);
+                        }}
                         multiline
                         numberOfLines={5}
                         value={nameInput}
@@ -109,7 +119,9 @@ const CuviInput = ({label, placeholder, typeInput, textColor, background,showLab
                     <TextInput
                         style={styles.cuviInput}
                         placeholder={placeholder}
-                        onChangeText={() => setNameInput({ nameInput })}
+                        onChangeText={(text) => {
+                            setCustomInput(text);
+                        }}
                         value={nameInput}
                         placeholderTextColor={textColor}
                     />
