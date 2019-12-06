@@ -44,7 +44,6 @@ const SignInScreen = ({ navigation }) => {
     const signInAsync = async () => {
         const { appEmail, appPass } = appData;
         if (appPass !== '' && appEmail !== '') {
-            console.log('entro');
             signup(appEmail, appPass);
         }
     };

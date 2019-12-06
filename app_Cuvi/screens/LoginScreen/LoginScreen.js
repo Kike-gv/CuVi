@@ -17,7 +17,6 @@ const LoginScreen = ({ navigation }) => {
     const signInAsync = async () => {
         const { loginEmail, loginPass } = loginData;
         if (loginEmail !== '' && loginPass !== '') {
-            console.log('entro login');
             const result = await login(loginEmail, loginPass);
             if (result) {
                 navigation.navigate('ApplicationScreens');
