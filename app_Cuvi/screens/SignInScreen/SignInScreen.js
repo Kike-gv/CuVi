@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, ImageBackground, StyleSheet, AsyncStorage } from 'react-native';
-import { getItem, getAllRealTime, deleteItem, addItem } from '../../services/database';
+import { getItem, getAllRealTime, deleteItem, addItemWithId } from '../../services/database';
+import { signup, registerAuthObserver } from '../../services/auth';
 
 import CuviButton from '../../components/CuviButton';
 import CuviInput from '../../components/CuviInput';
+
+let cancelObserver;
 
 const SignInScreen = ({ navigation }) => {
     const [appData, setAppData] = useState({
@@ -12,18 +15,40 @@ const SignInScreen = ({ navigation }) => {
         appEmail: ''
     })
 
-    const signInAsync = async () => {
-        console.log("TCL: signInAsync -> appData", appData)
-        if (appData.appName !== '' && appData.appPass !== '' && appData.appEmail !== '') {
-            console.log('he entrado al caso');
-            const result = await addItem('Usuarios',{ appData });
-            if (result) {
-              console.log('he guardado el user');
-              await AsyncStorage.setItem('user', JSON.stringify({appData}));
-              navigation.navigate('ApplicationScreens');
+    useEffect(() => {
+        if (cancelObserver) cancelObserver();
+
+        cancelObserver = registerAuthObserver(async (user) => {
+            if (user) {
+                const profile = await getItem('Usuarios', user.uid);
+                if (!profile) {
+                    const result = await addItemWithId(
+                        'Usuarios',
+                        { name: appData.appName, email: appData.appEmail },
+                        user.uid
+                    );
+                    if (result) {
+                        navigation.navigate('ApplicationScreens');
+                    }
+                }
             }
+        })
+
+        return () => {
+            cancelObserver();
+        }
+    }, [appData.appName, appData.appEmail])
+
+
+
+    const signInAsync = async () => {
+        const { appEmail, appPass } = appData;
+        if (appPass !== '' && appEmail !== '') {
+            console.log('entro');
+            signup(appEmail, appPass);
         }
     };
+
 
     const setValue = (value, id) => {
         setAppData({ ...appData, [id]: value });
@@ -35,9 +60,10 @@ const SignInScreen = ({ navigation }) => {
 
                 <CuviInput placeholder='Nombre Completo' id='appName' textColor='#383838' typeInput='text' inputValue={setValue} />
 
+                <CuviInput placeholder='Escribe tu correo electrónico' id='appEmail' textColor='#383838' typeInput='email-address' inputValue={setValue} />
+
                 <CuviInput placeholder='Escribe tu contraseña' id='appPass' textColor='#383838' typeInput='password' inputValue={setValue} />
 
-                <CuviInput placeholder='Escribe tu correo electrónico' id='appEmail' textColor='#383838' typeInput='email-address' inputValue={setValue} />
 
                 <CuviButton name='Crea tu cuenta' textColor='white' bgColor='#c78021' clickedEvent={signInAsync} />
             </View>
