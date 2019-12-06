@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View ,Button} from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -79,18 +79,42 @@ const LoginStack = createStackNavigator({
             headerBackTitle: null,
             headerStyle: {
                 backgroundColor: 'black',
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
                 fontWeight: 'bold',
-              },
+            },
+        }),
+    },
+});
+
+const cvStack = createStackNavigator({
+    'CV': {
+        screen: CustomDataScreen,
+        navigationOptions: () => ({
+            title: `Crea tu CV`,
+            headerBackTitle: null,
+            headerStyle: {
+                backgroundColor: 'black',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+            headerRight: () => (
+              <Button
+                onPress={() => alert('This is a button!')}
+                title="Info"
+                color="#fff"
+              />
+            ),
         }),
     },
 });
 
 const TabNavigator = createBottomTabNavigator({
     'Inicio': HomeStack,
-    'Mis datos': CustomDataScreen,
+    'Mis datos': cvStack,
     'Mi cuenta': SettingsScreen
 },
     {
@@ -101,9 +125,9 @@ const TabNavigator = createBottomTabNavigator({
                 let iconName;
                 if (routeName === 'Inicio') {
                     iconName = `md-home`;
-                }else if(routeName === 'Mis datos'){
+                } else if (routeName === 'Mis datos') {
                     iconName = `md-folder`;
-                }else if (routeName === 'Mi cuenta') {
+                } else if (routeName === 'Mi cuenta') {
                     iconName = `md-person`;
                     IconComponent = HomeIconWithBadge;
                 }
