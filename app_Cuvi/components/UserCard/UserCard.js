@@ -9,10 +9,10 @@ const UserCard = ({ profileImage, userCVInfo }) => {
                 <Image style={styles.userCard_userPhoto} source={{ uri: profileImage }} />
             </View>
             <Text style={styles.userCard_userName}>{userCVInfo.cvName}</Text>
-            <Text style={styles.userCard_userJob}>Dios del trueno</Text>
-            <Text style={styles.userCard_userJob}>Asgard S.A - 4 años</Text>
+            <Text style={styles.userCard_userJob}>{userCVInfo.cvJobPosition}</Text>
+            <Text style={styles.userCard_userJob}>{userCVInfo.cvJobCompany} - 4 años</Text>
             <View style={styles.userCard_skillsContainer}>
-                <Text style={styles.userCard_skillsContainer_skill}>Fuerte</Text>
+                <Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill}</Text>
                 <Text style={styles.userCard_skillsContainer_skill}>Resistente</Text>
                 <Text style={styles.userCard_skillsContainer_skill}>Buen catador</Text>
                 <Text style={styles.userCard_skillsContainer_skill}>Siempre tiene bateria</Text>
