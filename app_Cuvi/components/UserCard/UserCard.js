@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, Image, ImageBackground, Button, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
 
-const UserCard = ({profileImage}) => {
+const UserCard = ({ profileImage, userCVInfo }) => {
+    // console.log("TCL: UserCard -> userCVInfo", userCVInfo)
     return (
         <View style={styles.userCard}>
             <View style={styles.userCard_photoCover}>
                 <Image style={styles.userCard_userPhoto} source={{ uri: profileImage }} />
             </View>
-            <Text style={styles.userCard_userName}>Thor Odjnson</Text>
+            <Text style={styles.userCard_userName}>{userCVInfo.cvName}</Text>
             <Text style={styles.userCard_userJob}>Dios del trueno</Text>
             <Text style={styles.userCard_userJob}>Asgard S.A - 4 años</Text>
             <View style={styles.userCard_skillsContainer}>

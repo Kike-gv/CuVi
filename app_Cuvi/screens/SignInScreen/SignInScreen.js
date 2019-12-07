@@ -57,11 +57,11 @@ const SignInScreen = ({ navigation }) => {
         <ImageBackground source={{ uri: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' }} style={styles.signInImageContainer}>
             <View style={styles.signInContainer}>
 
-                <CuviInput placeholder='Nombre Completo' id='appName' textColor='#383838' typeInput='text' inputValue={setValue} />
+                <CuviInput placeholder='Nombre Completo' id='appName' textColor='#383838' typeInput='text' inputValueFunction={setValue} />
 
-                <CuviInput placeholder='Escribe tu correo electrónico' id='appEmail' textColor='#383838' typeInput='email-address' inputValue={setValue} />
+                <CuviInput placeholder='Escribe tu correo electrónico' id='appEmail' textColor='#383838' typeInput='email-address' inputValueFunction={setValue} />
 
-                <CuviInput placeholder='Escribe tu contraseña' id='appPass' textColor='#383838' typeInput='password' inputValue={setValue} />
+                <CuviInput placeholder='Escribe tu contraseña' id='appPass' textColor='#383838' typeInput='password' inputValueFunction={setValue} />
 
 
                 <CuviButton name='Crea tu cuenta' textColor='white' bgColor='#c78021' clickedEvent={signInAsync} />

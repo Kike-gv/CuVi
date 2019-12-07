@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View ,Button} from 'react-native';
+import { Text, View, Button } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -88,33 +88,10 @@ const LoginStack = createStackNavigator({
     },
 });
 
-const cvStack = createStackNavigator({
-    'CV': {
-        screen: CustomDataScreen,
-        navigationOptions: () => ({
-            title: `Crea tu CV`,
-            headerBackTitle: null,
-            headerStyle: {
-                backgroundColor: 'black',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                fontWeight: 'bold',
-            },
-            headerRight: () => (
-              <Button
-                onPress={() => alert('This is a button!')}
-                title="Info"
-                color="#fff"
-              />
-            ),
-        }),
-    },
-});
 
 const TabNavigator = createBottomTabNavigator({
     'Inicio': HomeStack,
-    'Mis datos': cvStack,
+    'Mis datos': CustomDataScreen,
     'Mi cuenta': SettingsScreen
 },
     {

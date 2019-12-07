@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-na
 import UncontrolledColorPicker from '../../components/ColorPicker';
 
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { setUser } from '../../redux/actions/userActions';
+import { setUser, setCV } from '../../redux/actions/userActions';
 
 import { logout } from '../../services/auth';
 
@@ -61,7 +61,7 @@ const SettingsScreen = ({ navigation, }) => {
 
     return (
         <View style={styles.settingsContainer}>
-            <UserCard profileImage={profileImage} />
+            <UserCard profileImage={profileImage} userCVInfo={state.user} />
 
             <UncontrolledColorPicker />
 
