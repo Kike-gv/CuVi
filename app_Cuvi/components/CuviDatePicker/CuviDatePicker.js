@@ -3,7 +3,8 @@ import { Text, View, StyleSheet } from 'react-native';
 
 import DatePicker from 'react-native-datepicker';
 
-const CuviDatePicker = ({ placeholder }) => {
+const CuviDatePicker = ({ placeholder, id, datePickerValueFunction, datePickerValueGet }) => {
+    console.log("TCL: CuviDatePicker -> datePickerValueGet", datePickerValueGet)
     const [inputDate, setInputDate] = useState('');
 
     const styles = StyleSheet.create({
@@ -30,7 +31,7 @@ const CuviDatePicker = ({ placeholder }) => {
         <View style={{ position: 'relative', width: '100%' }}>
             <DatePicker
                 style={styles.cuviDatePicker}
-                date={inputDate.date}
+                date={datePickerValueGet}
                 mode="date"
                 placeholder="Haz click para seleccionar"
                 format="YYYY-MM-DD"
@@ -40,7 +41,7 @@ const CuviDatePicker = ({ placeholder }) => {
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 showIcon={false}
-                onDateChange={(date) => setInputDate({ date })}
+                onDateChange={(date) => datePickerValueFunction(date, id)}
                 customStyles={{
                     dateInput: {
                         borderColor: 'transparent'
