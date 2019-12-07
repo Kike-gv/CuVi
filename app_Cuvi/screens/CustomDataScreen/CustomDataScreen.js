@@ -23,11 +23,6 @@ const CustomDataScreen = ({ navigation }) => {
 
 
     const setValue = (value, id) => {
-        console.log("TCL: setValue -> id", id)
-        console.log("TCL: setValue -> value", value)
-        // console.log("TCL: CustomDataScreen -> state", state.user)
-        // dispatch(setCV({ ...actualizeCV, [id]: value }));
-
         setCvData({ ...cvData, [id]: value });
     }
 
@@ -36,10 +31,8 @@ const CustomDataScreen = ({ navigation }) => {
         dispatch(setUser(newUser));
 
         cancelObserver = registerAuthObserver(async (user) => {
-            // console.log("TCL: cancelObserver -> user", user)
             if (user) {
                 const profile = await getItem('Usuarios', user.uid);
-                // console.log("TCL: cancelObserver -> profile", profile)
                 await addItemWithId(
                     'Usuarios',
                     { ...profile, ...newUser },
@@ -48,7 +41,7 @@ const CustomDataScreen = ({ navigation }) => {
 
             }
             else {
-                // console.log('no encuentro el user')
+                console.log('no encuentro el user')
             }
         });
 

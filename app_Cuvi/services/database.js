@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import "firebase/firestore";
+import "@firebase/firestore";
 
 function parseDoc(doc) {
   return {
@@ -19,7 +19,7 @@ function getDbInstance() {
 async function getAll(collection) {
   const db = getDbInstance();
   const collectionData = await db.collection(collection).get();
-  
+
   const results = [];
   collectionData.forEach((document) => {
     results.push(parseDoc(document));
@@ -52,11 +52,11 @@ async function addItemWithId(collection, item, id) {
 async function getItem(collection, itemId) {
   const db = getDbInstance();
   const document = await db.collection(collection).doc(itemId).get();
-  
+
   if (document.exists) {
     return parseDoc(document);
-  } 
-  return null; 
+  }
+  return null;
 }
 
 async function deleteItem(collection, itemId) {

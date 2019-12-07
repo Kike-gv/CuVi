@@ -4,7 +4,6 @@ import { Text, View, StyleSheet } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
 const CuviDatePicker = ({ placeholder, id, datePickerValueFunction, datePickerValueGet }) => {
-    console.log("TCL: CuviDatePicker -> datePickerValueGet", datePickerValueGet)
     const [inputDate, setInputDate] = useState('');
 
     const styles = StyleSheet.create({

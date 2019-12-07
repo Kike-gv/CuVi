@@ -3,7 +3,11 @@ import { Text, View, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-na
 import UncontrolledColorPicker from '../../components/ColorPicker';
 
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { setUser, setCV } from '../../redux/actions/userActions';
+import { setUser } from '../../redux/actions/userActions';
+
+import { getItem, getAllRealTime, deleteItem, addItemWithId } from '../../services/database';
+import { signup, registerAuthObserver } from '../../services/auth';
+import { uploadFile, getRealUri } from '../../services/storage';
 
 import { logout } from '../../services/auth';
 
@@ -14,13 +18,15 @@ import Constants from 'expo-constants';
 import UserCard from '../../components/UserCard';
 import CuviButton from '../../components/CuviButton';
 
+let cancelObserver;
 
 const SettingsScreen = ({ navigation, }) => {
     const state = useSelector(state => state);
     console.log("TCL: AuthLoadingScreen -> state", state)
     const dispatch = useDispatch();
 
-    const [profileImage, setProfileImage] = useState('https://media.vandalsports.com/i/640x360/10-2019/20191028161434_1.jpg');
+    const [profileImage, setProfileImage] = useState(state.user.cvPhoto);
+    const [fileUploadPercent, setFileUploadPercent] = useState('');
 
     const signOutAsync = async () => {
         dispatch(setUser(null));
@@ -38,7 +44,6 @@ const SettingsScreen = ({ navigation, }) => {
         }
 
     }
-
     useEffect(() => {
         asyncPermissions();
     }, []);
@@ -51,12 +56,32 @@ const SettingsScreen = ({ navigation, }) => {
             quality: 1
         });
 
-
         if (!result.cancelled) {
             const ImgUri = result.uri;
             setProfileImage(ImgUri);
+            let imageUpload = await uploadFile(ImgUri, state.user.email);
+            if (imageUpload) {
+                cancelObserver = registerAuthObserver(async (user) => {
+                    if (user) {
+                        const realUri = await getRealUri(state.user.email);
+                        console.log("TCL: cancelObserver -> realUri", realUri)
+                        const profile = await getItem('Usuarios', user.uid);
+                        await addItemWithId(
+                            'Usuarios',
+                            { ...profile, cvPhoto: realUri },
+                            user.uid
+                        );
+
+                    }
+                    else {
+                        console.log('no encuentro el user')
+                    }
+                });
+            }
         }
     }
+
+
 
 
     return (

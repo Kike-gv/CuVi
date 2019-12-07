@@ -3,8 +3,6 @@ import { Text, View, TextInput, StyleSheet } from 'react-native';
 
 
 const CuviInput = ({ id, label, placeholder, inputValueFunction, inputValueGet, typeInput, textColor, background, showLabel }) => {
-    console.log("TCL: CuviInput -> inputValueGet", inputValueGet)
-    // const [inputValueGet, setinputValueGet] = useState('');
 
 
 
