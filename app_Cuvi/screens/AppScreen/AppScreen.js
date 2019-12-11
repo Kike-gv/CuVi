@@ -12,6 +12,7 @@ import LoginScreen from '../LoginScreen';
 import AuthLoadingScreen from '../AuthLoadingScreen';
 import SignInScreen from '../SignInScreen';
 import CustomDataScreen from '../CustomDataScreen';
+import DasboardScreen from '../DashboardScreen';
 
 
 
@@ -90,7 +91,8 @@ const LoginStack = createStackNavigator({
 
 
 const TabNavigator = createBottomTabNavigator({
-    'Inicio': HomeStack,
+    'Inicio': DasboardScreen,
+    // 'Market': HomeStack,
     'Mis datos': CustomDataScreen,
     'Mi cuenta': SettingsScreen
 },
@@ -102,8 +104,10 @@ const TabNavigator = createBottomTabNavigator({
                 let iconName;
                 if (routeName === 'Inicio') {
                     iconName = `md-home`;
+                // } else if (routeName === 'Market') {
+                //     iconName = `md-albums`;
                 } else if (routeName === 'Mis datos') {
-                    iconName = `md-folder`;
+                    iconName = `md-list-box`;
                 } else if (routeName === 'Mi cuenta') {
                     iconName = `md-person`;
                     IconComponent = HomeIconWithBadge;

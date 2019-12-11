@@ -51,7 +51,7 @@ const CustomDataScreen = ({ navigation }) => {
     return (
 
         <ImageBackground source={{ uri: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' }} style={styles.dataBgContainer}>
-            <CuviHeader bgColor='#383838' buttonText='Actualiza el CV' textColor='white' buttonEvent={CuviHeaderFunction} />
+            <CuviHeader bgButtonColor='#383838' buttonText='Actualiza el CV' textColor='white' buttonEvent={CuviHeaderFunction} />
             <ScrollView style={styles.dataContainer}>
                 <View style={styles.dataContainer_block}>
                     <Text style={styles.dataContainer_block_title}>Información básica sobre mí</Text>

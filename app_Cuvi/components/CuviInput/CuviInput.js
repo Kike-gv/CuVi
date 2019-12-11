@@ -88,6 +88,7 @@ const CuviInput = ({ id, label, placeholder, inputValueFunction, inputValueGet, 
                         }}
                         value={inputValueGet}
                         keyboardType={typeInput}
+                        selectTextOnFocus={true}
                         placeholderTextColor={textColor}
                     />
                     {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
@@ -105,6 +106,7 @@ const CuviInput = ({ id, label, placeholder, inputValueFunction, inputValueGet, 
                         multiline
                         numberOfLines={5}
                         value={inputValueGet}
+                        selectTextOnFocus={true}
                         placeholderTextColor={textColor}
                     />
                     {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
@@ -120,6 +122,7 @@ const CuviInput = ({ id, label, placeholder, inputValueFunction, inputValueGet, 
                             inputValueFunction(text, id);
                         }}
                         value={inputValueGet}
+                        selectTextOnFocus={true}
                         placeholderTextColor={textColor}
                     />
                     {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
