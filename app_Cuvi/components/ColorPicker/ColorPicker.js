@@ -4,11 +4,10 @@ import { Text, View, TextInput, Image, ImageBackground, Button, TouchableOpacity
 import ColorPalette from 'react-native-color-palette';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const UncontrolledColorPicker = () => (
+const UncontrolledColorPicker = ({chosenColor}) => (
     <ColorPalette
-      onChange={color => alert(`Color selected: ${color}`)}
-      defaultColor={'#C0392B'}
-      colors={['#C0392B', '#E74C3C', '#9B59B6', '#8E44AD', '#2980B9']}
+      onChange={color => chosenColor(color)}
+      colors={['#c78021','#C0392B', '#E74C3C', '#9B59B6', '#8E44AD', '#2980B9']}
       title={"Escoge tu tema, lo usaremos tambien para tus CV:"}
       icon={
         <Text>✔</Text>

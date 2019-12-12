@@ -22,11 +22,12 @@ let cancelObserver;
 
 const SettingsScreen = ({ navigation, }) => {
     const state = useSelector(state => state);
+    const userRedux = useSelector(state => state.user);
     console.log("TCL: AuthLoadingScreen -> state", state)
     const dispatch = useDispatch();
 
-    const [profileImage, setProfileImage] = useState(state.user.cvPhoto);
-    const [fileUploadPercent, setFileUploadPercent] = useState('');
+    const [cvData, setCvData] = useState({ ...userRedux });
+    const [profileImage, setProfileImage] = useState(userRedux.cvPhoto);
 
     const signOutAsync = async () => {
         dispatch(setUser(null));
@@ -59,11 +60,11 @@ const SettingsScreen = ({ navigation, }) => {
         if (!result.cancelled) {
             const ImgUri = result.uri;
             setProfileImage(ImgUri);
-            let imageUpload = await uploadFile(ImgUri, state.user.email);
+            let imageUpload = await uploadFile(ImgUri, userRedux.email);
             if (imageUpload) {
                 cancelObserver = registerAuthObserver(async (user) => {
                     if (user) {
-                        const realUri = await getRealUri(state.user.email);
+                        const realUri = await getRealUri(userRedux.email);
                         console.log("TCL: cancelObserver -> realUri", realUri)
                         const profile = await getItem('Usuarios', user.uid);
                         await addItemWithId(
@@ -81,14 +82,33 @@ const SettingsScreen = ({ navigation, }) => {
         }
     }
 
+    const setcolor=(color)=>{
+        console.log("TCL: setcolor -> color", color)
+        setCvData({ ...cvData, cvColor: color });
+        cancelObserver = registerAuthObserver(async (user) => {
+            if (user) {
+                const profile = await getItem('Usuarios', user.uid);
+                await addItemWithId(
+                    'Usuarios',
+                    { ...profile, cvColor: color},
+                    user.uid
+                );
+
+            }
+            else {
+                console.log('no encuentro el user')
+            }
+        });
+    }
+
 
 
 
     return (
         <View style={styles.settingsContainer}>
-            <UserCard profileImage={profileImage} userCVInfo={state.user} />
+            <UserCard profileImage={profileImage} userCVInfo={userRedux} bgColor={cvData.cvColor} />
 
-            <UncontrolledColorPicker />
+            <UncontrolledColorPicker chosenColor={setcolor} />
 
             <CuviButton name='Cambia tu foto de perfil' icon='md-image' textColor='#383838' bgColor='rgba(199, 128, 33, 0.25)' clickedEvent={pickImge} />
 

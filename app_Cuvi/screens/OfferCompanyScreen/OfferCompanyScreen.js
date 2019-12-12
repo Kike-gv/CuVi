@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, ImageBackground, TouchableOpacity, StyleSheet, AsyncStorage, } from 'react-native';
+import { Text, ScrollView, View, TextInput, ImageBackground, TouchableOpacity, StyleSheet, AsyncStorage, } from 'react-native';
 
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../redux/actions/userActions';
@@ -9,6 +9,7 @@ import { registerAuthObserver } from '../../services/auth';
 import { getItem, getAll } from '../../services/database';
 
 import CuviButton from '../../components/CuviButton';
+import UserCard from '../../components/UserCard';
 
 const OfferCompanyScreen = ({ navigation }) => {
     const state = useSelector(state => state);
@@ -39,7 +40,7 @@ const OfferCompanyScreen = ({ navigation }) => {
 
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ScrollView>
             <CuviButton name='Log out' icon='md-exit' textColor='#383838' bgColor='rgba(199, 128, 33, 0.25)' clickedEvent={signOutAsync} />
             <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                 <TextInput placeholder='busca por talento' value={filterWord} onChangeText={(text) => { setFilterWord(text) }} />
@@ -47,9 +48,9 @@ const OfferCompanyScreen = ({ navigation }) => {
             </View>
 
             <View>
-                {chosenUsers !== '' && chosenUsers.map((userFiltered)=><TouchableOpacity><Text>{userFiltered.cvName}</Text></TouchableOpacity>)}
+                {chosenUsers !== '' && chosenUsers.map((userFiltered) => <TouchableOpacity key={userFiltered.email}><UserCard profileImage={userFiltered.cvPhoto} userCVInfo={userFiltered} bgColor={userFiltered.cvColor} /></TouchableOpacity>)}
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
