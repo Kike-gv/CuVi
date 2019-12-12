@@ -20,6 +20,7 @@ import DasboardScreen from '../DashboardScreen';
 import SignUpCompanyScreen from '../SignUpCompanyScreen';
 import LoginCompanyScreen from '../LoginCompanyScreen';
 import CandidatesCompanyScreen from '../CandidatesCompanyScreen';
+import ResumeCompanyScreen from '../ResumeCompanyScreen';
 
 
 
@@ -153,7 +154,8 @@ const TabNavigator = createBottomTabNavigator({
     });
 
 const TabNavigatorCompany = createBottomTabNavigator({
-    'candidatos': CandidatesCompanyScreen,
+    'Candidatos': CandidatesCompanyScreen,
+    'Ofertas': ResumeCompanyScreen,
     // 'Market': HomeStack,
 },
     {
@@ -162,10 +164,10 @@ const TabNavigatorCompany = createBottomTabNavigator({
                 const { routeName } = navigation.state;
                 let IconComponent = Ionicons;
                 let iconName;
-                if (routeName === 'candidatos') {
-                    iconName = `md-home`;
-                    // } else if (routeName === 'Market') {
-                    //     iconName = `md-albums`;
+                if (routeName === 'Candidatos') {
+                    iconName = `md-people`;
+                } else if (routeName === 'Ofertas') {
+                    iconName = `md-list-box`;
                 }
 
                 // You can return any component that you like here!

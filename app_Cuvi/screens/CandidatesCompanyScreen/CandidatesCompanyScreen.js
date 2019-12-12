@@ -10,6 +10,7 @@ import { getItem, getAll } from '../../services/database';
 
 import CuviButton from '../../components/CuviButton';
 import UserCard from '../../components/UserCard';
+import { SendEmail } from '../../components/SendEmail/SendEmail';
 
 const CandidatesCompanyScreen = ({ navigation }) => {
     const state = useSelector(state => state);
@@ -37,6 +38,17 @@ const CandidatesCompanyScreen = ({ navigation }) => {
         setChosenUsers(selectedUsers);
     };
 
+    const sendEmailToCandidate = (candidate) => {
+        SendEmail(
+            candidate.email,
+            'Can we get there?',
+            'Elon, here’s one destination you guys should consider [link]',
+            { cc: '' }
+        ).then(() => {
+            alert('Your message was successfully sent!');
+        });
+    }
+
 
 
     return (
@@ -50,9 +62,7 @@ const CandidatesCompanyScreen = ({ navigation }) => {
             <View>
                 {chosenUsers !== '' && chosenUsers.map((userFiltered) =>
                     <TouchableOpacity key={userFiltered.email}
-                        onPress={
-                            ()=>{}
-                        }>
+                        onPress={() => { sendEmailToCandidate(userFiltered) }}>
                         <UserCard profileImage={userFiltered.cvPhoto}
                             userCVInfo={userFiltered}
                             bgColor={userFiltered.cvColor}
