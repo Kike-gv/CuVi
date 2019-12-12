@@ -19,7 +19,7 @@ import DasboardScreen from '../DashboardScreen';
 
 import SignUpCompanyScreen from '../SignUpCompanyScreen';
 import LoginCompanyScreen from '../LoginCompanyScreen';
-import OfferCompanyScreen from '../OfferCompanyScreen';
+import CandidatesCompanyScreen from '../CandidatesCompanyScreen';
 
 
 
@@ -153,7 +153,7 @@ const TabNavigator = createBottomTabNavigator({
     });
 
 const TabNavigatorCompany = createBottomTabNavigator({
-    'Oferta': OfferCompanyScreen,
+    'candidatos': CandidatesCompanyScreen,
     // 'Market': HomeStack,
 },
     {
@@ -162,7 +162,7 @@ const TabNavigatorCompany = createBottomTabNavigator({
                 const { routeName } = navigation.state;
                 let IconComponent = Ionicons;
                 let iconName;
-                if (routeName === 'Oferta') {
+                if (routeName === 'candidatos') {
                     iconName = `md-home`;
                     // } else if (routeName === 'Market') {
                     //     iconName = `md-albums`;

@@ -11,7 +11,7 @@ import { getItem, getAll } from '../../services/database';
 import CuviButton from '../../components/CuviButton';
 import UserCard from '../../components/UserCard';
 
-const OfferCompanyScreen = ({ navigation }) => {
+const CandidatesCompanyScreen = ({ navigation }) => {
     const state = useSelector(state => state);
     const dispatch = useDispatch();
 
@@ -48,10 +48,20 @@ const OfferCompanyScreen = ({ navigation }) => {
             </View>
 
             <View>
-                {chosenUsers !== '' && chosenUsers.map((userFiltered) => <TouchableOpacity key={userFiltered.email}><UserCard profileImage={userFiltered.cvPhoto} userCVInfo={userFiltered} bgColor={userFiltered.cvColor} /></TouchableOpacity>)}
+                {chosenUsers !== '' && chosenUsers.map((userFiltered) =>
+                    <TouchableOpacity key={userFiltered.email}
+                        onPress={
+                            ()=>{}
+                        }>
+                        <UserCard profileImage={userFiltered.cvPhoto}
+                            userCVInfo={userFiltered}
+                            bgColor={userFiltered.cvColor}
+                        />
+                    </TouchableOpacity>)
+                }
             </View>
         </ScrollView>
     );
 }
 
-export default OfferCompanyScreen;
+export default CandidatesCompanyScreen;
