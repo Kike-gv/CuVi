@@ -8,7 +8,7 @@ import CuviInput from '../../components/CuviInput';
 
 
 
-const LoginScreen = ({ navigation }) => {
+const LoginCompanyScreen = ({ navigation }) => {
     const [loginData, setLoginData] = useState({
         loginEmail: '',
         loginPass: ''
@@ -19,7 +19,7 @@ const LoginScreen = ({ navigation }) => {
         if (loginEmail !== '' && loginPass !== '') {
             const result = await login(loginEmail, loginPass);
             if (result) {
-                navigation.navigate('ApplicationScreens');
+                navigation.navigate('CompanyScreens');
             }
             else{
                 alert('tu correo y/o password son erróneos');
@@ -35,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
 
 
     return (
-        <ImageBackground source={{ uri: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' }} style={styles.loginImageContainer}>
+        <ImageBackground source={{ uri: 'https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' }} style={styles.loginImageContainer}>
             <View style={styles.loginContainer}>
 
                 <CuviInput placeholder='Escribe tu correo electrónico' id='loginEmail' textColor='#383838' typeInput='email-address' inputValueFunction={setValue} />
@@ -45,8 +45,8 @@ const LoginScreen = ({ navigation }) => {
                 <CuviButton name='Accede a tu cuenta' textColor='white' bgColor='#c78021' clickedEvent={signInAsync} />
 
                 <Text style={styles.loginContainer_text}>O</Text>
-                <TouchableOpacity onPress={() => { navigation.navigate('SignUp') }}><Text style={styles.loginContainer_text}>Crea tu cuenta</Text></TouchableOpacity>
-                <TouchableOpacity onPress={() => { navigation.navigate('LoginCompany') }}><Text style={styles.loginContainer_text}>Login para empresas</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => { navigation.navigate('SignUpCompany') }}><Text style={styles.loginContainer_text}>Crea tu cuenta</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => { navigation.navigate('Login') }}><Text style={styles.loginContainer_text}>Login para particulares</Text></TouchableOpacity>
             </View>
         </ImageBackground>
     );
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginScreen;
+export default LoginCompanyScreen;

@@ -7,12 +7,13 @@ import { setUser } from '../../redux/actions/userActions';
 
 const DashboardScreen = ({ navigation }) => {
     const user = useSelector(state => state.user);
+    console.log("TCL: DashboardScreen -> user", user)
     const dispatch = useDispatch();
 
 
     return (
         <ScrollView style={styles.dashboardContainer}>
-            <Text style={styles.dashboardContainer_generalTitle}>Hola {user.name}, este es tu muro.</Text>
+            <Text style={styles.dashboardContainer_generalTitle}>Hola {user.name && user.name}, este es tu muro.</Text>
             <View style={styles.cvContainer_Container}>
                 <TouchableOpacity style={styles.cvContainer_cvPreview}>
                     <Image style={styles.cvContainer_cvImage} source={{ uri: 'https://gosumo-cvtemplate.com/wp-content/uploads/2016/09/CV-Template-Zurich-500x722.png' }} />

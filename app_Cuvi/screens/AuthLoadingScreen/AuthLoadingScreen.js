@@ -18,12 +18,19 @@ const AuthLoadingScreen = ({ navigation }) => {
         console.log('entro al useEffect auth');
         const cancelObserver = registerAuthObserver(async (user) => {
             if (user) {
+                // console.log("TCL: cancelObserver -> user", user)
                 const profile = await getItem('Usuarios', user.uid);
+                const profileCompany = await getItem('Empresas', user.uid);
                 // console.log("TCL: cancelObserver -> profile", profile)
                 if (profile) {
                     dispatch(setUser(profile));
-                    console.log("Estás registrado");
+                    console.log("Estás registrado como usuario");
                     navigation.navigate('ApplicationScreens');
+
+                }else if (profileCompany) {
+                    dispatch(setUser(profileCompany));
+                    console.log("Estás registrado como empresa");
+                    navigation.navigate('CompanyScreens');
 
                 } else {
                     console.log("todavía se está registrando");

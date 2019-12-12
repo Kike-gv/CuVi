@@ -5,14 +5,22 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+
+import AuthLoadingScreen from '../AuthLoadingScreen';
+
 import HomeScreen from '../HomeScreen';
 import SettingsScreen from '../SettingsScreen';
 import DetailScreen from '../DetailScreen';
 import LoginScreen from '../LoginScreen';
-import AuthLoadingScreen from '../AuthLoadingScreen';
-import SignInScreen from '../SignInScreen';
+import SignUpScreen from '../SignUpScreen';
 import CustomDataScreen from '../CustomDataScreen';
 import DasboardScreen from '../DashboardScreen';
+
+
+import SignUpCompanyScreen from '../SignUpCompanyScreen';
+import LoginCompanyScreen from '../LoginCompanyScreen';
+import OfferCompanyScreen from '../OfferCompanyScreen';
+
 
 
 
@@ -73,8 +81,28 @@ const LoginStack = createStackNavigator({
             headerShown: false,
         }),
     },
-    'SignIn': {
-        screen: SignInScreen,
+    'SignUp': {
+        screen: SignUpScreen,
+        navigationOptions: () => ({
+            title: `Crea tu cuenta`,
+            headerBackTitle: null,
+            headerStyle: {
+                backgroundColor: 'black',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        }),
+    },
+    'LoginCompany': {
+        screen: LoginCompanyScreen,
+        navigationOptions: () => ({
+            headerShown: false,
+        }),
+    },
+    'SignUpCompany': {
+        screen: SignUpCompanyScreen,
         navigationOptions: () => ({
             title: `Crea tu cuenta`,
             headerBackTitle: null,
@@ -88,6 +116,7 @@ const LoginStack = createStackNavigator({
         }),
     },
 });
+
 
 
 const TabNavigator = createBottomTabNavigator({
@@ -104,13 +133,39 @@ const TabNavigator = createBottomTabNavigator({
                 let iconName;
                 if (routeName === 'Inicio') {
                     iconName = `md-home`;
-                // } else if (routeName === 'Market') {
-                //     iconName = `md-albums`;
+                    // } else if (routeName === 'Market') {
+                    //     iconName = `md-albums`;
                 } else if (routeName === 'Mis datos') {
                     iconName = `md-list-box`;
                 } else if (routeName === 'Mi cuenta') {
                     iconName = `md-person`;
-                    IconComponent = HomeIconWithBadge;
+                    // IconComponent = HomeIconWithBadge;
+                }
+
+                // You can return any component that you like here!
+                return <IconComponent name={iconName} size={25} color={tintColor} />;
+            },
+        }),
+        tabBarOptions: {
+            activeTintColor: '#c78021',
+            inactiveTintColor: 'gray',
+        },
+    });
+
+const TabNavigatorCompany = createBottomTabNavigator({
+    'Oferta': OfferCompanyScreen,
+    // 'Market': HomeStack,
+},
+    {
+        defaultNavigationOptions: ({ navigation }) => ({
+            tabBarIcon: ({ focused, horizontal, tintColor }) => {
+                const { routeName } = navigation.state;
+                let IconComponent = Ionicons;
+                let iconName;
+                if (routeName === 'Oferta') {
+                    iconName = `md-home`;
+                    // } else if (routeName === 'Market') {
+                    //     iconName = `md-albums`;
                 }
 
                 // You can return any component that you like here!
@@ -127,6 +182,7 @@ const TabNavigator = createBottomTabNavigator({
 const switchNavigator = createSwitchNavigator({
     'AuthLoading': AuthLoadingScreen,
     'ApplicationScreens': TabNavigator,
+    'CompanyScreens': TabNavigatorCompany,
     'Auth': LoginStack,
 },
     {

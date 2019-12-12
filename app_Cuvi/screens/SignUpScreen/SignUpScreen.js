@@ -3,12 +3,19 @@ import { View, ImageBackground, StyleSheet, AsyncStorage } from 'react-native';
 import { getItem, getAllRealTime, deleteItem, addItemWithId } from '../../services/database';
 import { signup, registerAuthObserver } from '../../services/auth';
 
+import { connect, useSelector, useDispatch } from 'react-redux';
+import { setUser } from '../../redux/actions/userActions';
+
 import CuviButton from '../../components/CuviButton';
 import CuviInput from '../../components/CuviInput';
 
 let cancelObserver;
 
-const SignInScreen = ({ navigation }) => {
+const SignUpScreen = ({ navigation }) => {
+    const userRedux = useSelector(state => state.user);
+    const state = useSelector(state => state);
+    const dispatch = useDispatch();
+
     const [appData, setAppData] = useState({
         appName: '',
         appPass: '',
@@ -22,9 +29,11 @@ const SignInScreen = ({ navigation }) => {
             if (user) {
                 const profile = await getItem('Usuarios', user.uid);
                 if (!profile) {
+                    dispatch(setUser({ name: appData.appName, email: appData.appEmail, cvTypeOfUser: 'user' }));
                     const result = await addItemWithId(
+                        
                         'Usuarios',
-                        { name: appData.appName, email: appData.appEmail },
+                        { name: appData.appName, email: appData.appEmail, cvTypeOfUser: 'user' },
                         user.uid
                     );
                     if (result) {
@@ -89,4 +98,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SignInScreen;
+export default SignUpScreen;

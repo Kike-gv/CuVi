@@ -1,4 +1,5 @@
 const INITIAL_STATE = { 
+  cvTypeOfUser: 'user',
   cvName: '',
   cvDatePicker:'01-01-1900',
   cvTelephone: '',
