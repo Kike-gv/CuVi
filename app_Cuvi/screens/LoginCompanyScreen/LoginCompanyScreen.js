@@ -19,7 +19,7 @@ const LoginCompanyScreen = ({ navigation }) => {
         if (loginEmail !== '' && loginPass !== '') {
             const result = await login(loginEmail, loginPass);
             if (result) {
-                navigation.navigate('CompanyScreens');
+                navigation.navigate('AuthLoading');
             }
             else{
                 alert('tu correo y/o password son erróneos');

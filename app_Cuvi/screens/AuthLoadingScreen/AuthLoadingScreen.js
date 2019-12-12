@@ -10,7 +10,6 @@ import { getItem } from '../../services/database';
 const AuthLoadingScreen = ({ navigation }) => {
     const actualizeUser = useSelector(state => state.inputState.setUser);
     const state = useSelector(state => state);
-    // console.log("TCL: AuthLoadingScreen -> state", state)
     const dispatch = useDispatch();
 
 
@@ -18,10 +17,8 @@ const AuthLoadingScreen = ({ navigation }) => {
         console.log('entro al useEffect auth');
         const cancelObserver = registerAuthObserver(async (user) => {
             if (user) {
-                // console.log("TCL: cancelObserver -> user", user)
                 const profile = await getItem('Usuarios', user.uid);
                 const profileCompany = await getItem('Empresas', user.uid);
-                // console.log("TCL: cancelObserver -> profile", profile)
                 if (profile) {
                     dispatch(setUser(profile));
                     console.log("Estás registrado como usuario");

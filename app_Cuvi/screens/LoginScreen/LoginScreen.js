@@ -19,7 +19,7 @@ const LoginScreen = ({ navigation }) => {
         if (loginEmail !== '' && loginPass !== '') {
             const result = await login(loginEmail, loginPass);
             if (result) {
-                navigation.navigate('ApplicationScreens');
+                navigation.navigate('AuthLoading');
             }
             else{
                 alert('tu correo y/o password son erróneos');
@@ -32,6 +32,8 @@ const LoginScreen = ({ navigation }) => {
     const setValue = (value, id) => {
         setLoginData({ ...loginData, [id]: value });
     }
+
+    
 
 
     return (
