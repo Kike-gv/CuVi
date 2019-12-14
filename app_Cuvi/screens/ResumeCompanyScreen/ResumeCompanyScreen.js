@@ -81,7 +81,8 @@ const ResumeCompanyScreen = ({ navigation }) => {
                     <IconComponent name={`md-people`} size={25} color={'#383838'} />
                 </TouchableOpacity>
             </View>
-            <CuviButton name='Envia la oferta a los candidatos' textColor='#c78021' bgColor='white' clickedEvent={sendEmailToCandidate} />
+
+            {jobOfferRedux.offerCandidates !== undefined && jobOfferRedux.offerCandidates.length > 0 && <CuviButton name='Envia la oferta a los candidatos' textColor='#c78021' bgColor='white' clickedEvent={sendEmailToCandidate} />}
 
             <CuviButton name='Guarda la oferta' textColor='white' bgColor='#c78021' clickedEvent={updateOffer} />
         </View>
