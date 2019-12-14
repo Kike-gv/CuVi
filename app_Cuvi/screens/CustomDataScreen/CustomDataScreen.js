@@ -5,14 +5,12 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../redux/actions/userActions';
 
 import { getItem, getAllRealTime, deleteItem, addItemWithId } from '../../services/database';
-import { signup, registerAuthObserver } from '../../services/auth';
 
 import CuviHeader from '../../components/CuviHeader';
 import CuviButton from '../../components/CuviButton';
 import CuviInput from '../../components/CuviInput';
 import CuviDatePicker from '../../components/CuviDatePicker';
 
-let cancelObserver;
 
 const CustomDataScreen = ({ navigation }) => {
     const userRedux = useSelector(state => state.user);
@@ -26,25 +24,16 @@ const CustomDataScreen = ({ navigation }) => {
         setCvData({ ...cvData, [id]: value });
     }
 
-    const CuviHeaderFunction = () => {
+    const CuviHeaderFunction = async() => {
         const newUser = { ...userRedux, ...cvData };
         dispatch(setUser(newUser));
 
-        cancelObserver = registerAuthObserver(async (user) => {
-            if (user) {
-                const profile = await getItem('Usuarios', user.uid);
-                await addItemWithId(
-                    'Usuarios',
-                    { ...profile, ...newUser },
-                    user.uid
-                );
-
-            }
-            else {
-                console.log('no encuentro el user')
-            }
-        });
-
+        const profile = await getItem('Usuarios', newUser.id);
+        await addItemWithId(
+            'Usuarios',
+            { ...profile, ...newUser },
+            newUser.id
+        );
     }
 
 

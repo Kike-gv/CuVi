@@ -7,7 +7,7 @@ import { setUser } from '../../redux/actions/userActions';
 
 const DashboardScreen = ({ navigation }) => {
     const user = useSelector(state => state.user);
-    console.log("TCL: DashboardScreen -> user", user)
+    // console.log("TCL: DashboardScreen -> user", user)
     const dispatch = useDispatch();
 
 
