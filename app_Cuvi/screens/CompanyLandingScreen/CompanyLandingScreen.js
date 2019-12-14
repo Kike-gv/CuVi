@@ -6,33 +6,27 @@ import { setUser } from '../../redux/actions/userActions';
 import { setJobOffer } from '../../redux/actions/jobOfferActions';
 
 import { parseDoc, getItem, getAllFiltered, getAllRealTime, addItem, deleteItem, addItemWithId } from '../../services/database';
-import { signup, registerAuthObserver, logout } from '../../services/auth';
-
+import { logout } from '../../services/auth';
 
 import CuviButton from '../../components/CuviButton';
 
 
 const CompanyLandingScreen = ({ navigation }) => {
     const dispatch = useDispatch();
-    
+    const userRedux = useSelector(state => state.user);
+    const state = useSelector(state => state);
+
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-        cancelObserver = registerAuthObserver(async (user) => {
-            if (user) {
-                dispatch(setUser({ ...user.providerData[0], companyId: user.uid }));
-                const companyOffers = getAllRealTime({
-                    collection: 'Ofertas', filters: { field: 'companyId', condition: '==', value: user.uid }, callback: (collectionData) => {
-                        const results = [];
-                        collectionData.forEach((document) => {
-                            results.push(parseDoc(document));
-                        });
-                        setJobs(results);
-                    }
+        dispatch(setUser({ ...userRedux, companyId: userRedux.id }));
+        getAllRealTime({
+            collection: 'Ofertas', filters: { field: 'companyId', condition: '==', value: userRedux.id }, callback: (collectionData) => {
+                const results = [];
+                collectionData.forEach((document) => {
+                    results.push(parseDoc(document));
                 });
-            }
-            else {
-                console.log('no encuentro el usuario')
+                setJobs(results);
             }
         });
     }, []);
@@ -59,8 +53,8 @@ const CompanyLandingScreen = ({ navigation }) => {
                 {jobs !== '' && jobs.map(job =>
                     <TouchableOpacity style={styles.companyLanding_offer} key={job.offerName} onPress={() => goToOffer(job)}>
                         <Text style={styles.companyLanding_offer_title}>{job.offerName}</Text>
-                        
-                        {job.offerCandidates !== undefined && job.offerCandidates.length >= 0 ? <Text style={styles.companyLanding_offer_candidates}>{job.offerCandidates.length} candidatos seleccionados</Text>: <Text style={styles.companyLanding_offer_candidates}>0 candidatos seleccionados</Text>}
+
+                        {job.offerCandidates !== undefined && job.offerCandidates.length >= 0 ? <Text style={styles.companyLanding_offer_candidates}>{job.offerCandidates.length} candidatos seleccionados</Text> : <Text style={styles.companyLanding_offer_candidates}>0 candidatos seleccionados</Text>}
                     </TouchableOpacity>
                 )}
             </View>

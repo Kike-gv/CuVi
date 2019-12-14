@@ -5,7 +5,6 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 import { setJobOffer } from '../../redux/actions/jobOfferActions';
 
 import { getItem, getAllFiltered, addItem, deleteItem, addItemWithId } from '../../services/database';
-import { signup, registerAuthObserver } from '../../services/auth';
 
 
 import { SendEmail } from '../../components/SendEmail/SendEmail';

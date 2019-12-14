@@ -5,8 +5,6 @@ import { CheckBox } from 'react-native-elements'
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { setJobOffer } from '../../redux/actions/jobOfferActions';
 
-
-import { registerAuthObserver } from '../../services/auth';
 import { getItem, getAll } from '../../services/database';
 
 import CuviButton from '../../components/CuviButton';
