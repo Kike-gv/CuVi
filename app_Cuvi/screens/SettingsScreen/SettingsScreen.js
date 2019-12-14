@@ -21,7 +21,6 @@ import CuviButton from '../../components/CuviButton';
 const SettingsScreen = ({ navigation, }) => {
     const state = useSelector(state => state);
     const userRedux = useSelector(state => state.user);
-    console.log("TCL: SettingsScreen -> userRedux", userRedux)
     const dispatch = useDispatch();
 
     const [cvData, setCvData] = useState({ ...userRedux });
@@ -61,7 +60,6 @@ const SettingsScreen = ({ navigation, }) => {
             let imageUpload = await uploadFile(ImgUri, userRedux.email);
             if (imageUpload) {
                 const realUri = await getRealUri(userRedux.email);
-                console.log("TCL: cancelObserver -> realUri", realUri)
                 const profile = await getItem('Usuarios', userRedux.id);
                 await addItemWithId(
                     'Usuarios',
