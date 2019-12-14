@@ -28,19 +28,30 @@ async function getAll(collection) {
   return results;
 }
 
-async function getAllRealTime({ collection, filters, order, callback }) {
+async function getAllFiltered({ collection, filters }) {
   const db = getDbInstance();
-  const dbCollection = db.collection(collection);
-  const collectionFiltered = dbCollection.where(filters.field, filters.condition, filters.value);
-  const collectionOrdered = collectionFiltered.orderBy(order);
-  const llamaACallBackWithData = (collectionData) => callback(collectionData)
-  collectionOrdered.onSnapshot(llamaACallBackWithData)
+  const collectionData = await db.collection(collection).where(filters.field, filters.condition, filters.value).get();
+
+  const results = [];
+  collectionData.forEach((document) => {
+    results.push(parseDoc(document));
+  });
+
+  return results;
+}
+
+function getAllRealTime({ collection, filters, order, callback }) {
+  let db = getDbInstance();
+  db = db.collection(collection);
+  db = db.where(filters.field, filters.condition, filters.value);
+  if (order) { db = db.orderBy(order); }
+  return db.onSnapshot(callback)
 }
 
 async function addItem(collection, item) {
   const db = getDbInstance();
   const result = await db.collection(collection).add(item)
-  return !!result.id;
+  return result.id;
 }
 
 async function addItemWithId(collection, item, id) {
@@ -66,7 +77,9 @@ async function deleteItem(collection, itemId) {
 }
 
 export {
+  parseDoc,
   getAll,
+  getAllFiltered,
   addItem,
   getItem,
   getAllRealTime,

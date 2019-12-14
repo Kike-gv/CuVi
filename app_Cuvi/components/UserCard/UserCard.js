@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, Image, ImageBackground, Button, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
 
 const UserCard = ({ profileImage, userCVInfo, bgColor }) => {
-    console.log("TCL: UserCard -> bgColor", bgColor)
-    // console.log("TCL: UserCard -> userCVInfo", userCVInfo)
     const styles = StyleSheet.create({
         userCard: {
             alignItems: 'center',

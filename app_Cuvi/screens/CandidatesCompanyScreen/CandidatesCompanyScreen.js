@@ -1,31 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, ScrollView, View, TextInput, ImageBackground, TouchableOpacity, StyleSheet, AsyncStorage, } from 'react-native';
+import { CheckBox } from 'react-native-elements'
 
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { setUser } from '../../redux/actions/userActions';
+import { setJobOffer } from '../../redux/actions/jobOfferActions';
 
-import { logout } from '../../services/auth';
+
 import { registerAuthObserver } from '../../services/auth';
 import { getItem, getAll } from '../../services/database';
 
 import CuviButton from '../../components/CuviButton';
 import UserCard from '../../components/UserCard';
-import { SendEmail } from '../../components/SendEmail/SendEmail';
 
 const CandidatesCompanyScreen = ({ navigation }) => {
+    const { job } = navigation.state.params;
+
+    const jobOfferRedux = useSelector(state => state.jobOffer);
     const state = useSelector(state => state);
     const dispatch = useDispatch();
 
     const [filterWord, setFilterWord] = useState('');
     const [chosenUsers, setChosenUsers] = useState('');
-    console.log("TCL: OfferCompanyScreen -> chosenUsers", chosenUsers)
+    const [selectedUsersCheck, setSelectedUsersCheck] = useState([]);
+    const [checked, setChecked] = useState(false);
 
-    const signOutAsync = async () => {
-        dispatch(setUser(null));
-        logout();
-        console.log("TCL: AuthLoadingScreen -> state", state)
-        navigation.navigate('Auth');
-    };
+    // console.log("TCL: OfferCompanyScreen -> chosenUsers", chosenUsers)
+
+    // useEffect(() => {
+    //     dispatch(setJobOffer(job));
+    //     console.log("TCL: CandidatesCompanyScreen -> jobOfferRedux", jobOfferRedux)
+    // }, [])
+
+
 
     const searchResults = async () => {
         const users = await getAll('Usuarios');
@@ -38,40 +44,76 @@ const CandidatesCompanyScreen = ({ navigation }) => {
         setChosenUsers(selectedUsers);
     };
 
-    const sendEmailToCandidate = (candidate) => {
-        SendEmail(
-            candidate.email,
-            'Can we get there?',
-            'Elon, here’s one destination you guys should consider [link]',
-            { cc: '' }
-        ).then(() => {
-            alert('Your message was successfully sent!');
-        });
+    const selectUserForJob = (email) => {
+        const usersEmailArray = [...selectedUsersCheck];
+        setChecked(!checked);
+        const userInArray = selectedUsersCheck.indexOf(email);
+        if (userInArray >= 0) {
+            usersEmailArray.splice(userInArray, 1);
+        } else {
+            usersEmailArray.push(email);
+        }
+        setSelectedUsersCheck(usersEmailArray);
     }
 
 
+    const saveCandidates = () => {
+        dispatch(setJobOffer({ ...jobOfferRedux, offerCandidates: selectedUsersCheck }));
+    }
+
 
     return (
-        <ScrollView>
-            <CuviButton name='Log out' icon='md-exit' textColor='#383838' bgColor='rgba(199, 128, 33, 0.25)' clickedEvent={signOutAsync} />
-            <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                <TextInput placeholder='busca por talento' value={filterWord} onChangeText={(text) => { setFilterWord(text) }} />
+        <ScrollView style={styles.candidatesCompany}>
+            <View style={styles.resumeCompany_search}>
+                <TextInput style={styles.resumeCompany_profiles_input} placeholder='busca por talento' value={filterWord} onChangeText={(text) => { setFilterWord(text) }} />
                 <TouchableOpacity onPress={() => searchResults()}><Text>busca</Text></TouchableOpacity>
             </View>
 
             <View>
                 {chosenUsers !== '' && chosenUsers.map((userFiltered) =>
-                    <TouchableOpacity key={userFiltered.email}
-                        onPress={() => { sendEmailToCandidate(userFiltered) }}>
+                    <View key={userFiltered.email}>
                         <UserCard profileImage={userFiltered.cvPhoto}
                             userCVInfo={userFiltered}
                             bgColor={userFiltered.cvColor}
                         />
-                    </TouchableOpacity>)
+                        <CheckBox
+                            center
+                            title='Click Here'
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={selectedUsersCheck.indexOf(userFiltered.email) >= 0}
+                            onPress={() => { selectUserForJob(userFiltered.email) }}
+                        />
+                    </View>)
                 }
             </View>
+            <CuviButton name='Guarda los candidatos' textColor='white' bgColor='#c78021' clickedEvent={saveCandidates} />
         </ScrollView>
     );
 }
+
+const styles = StyleSheet.create({
+    candidatesCompany: {
+        padding: 16,
+    },
+    resumeCompany_search: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 16,
+    },
+    resumeCompany_profiles_input: {
+        fontSize: 18,
+        color: '#383838',
+        borderBottomColor: '#cccccc',
+        borderBottomWidth: 1
+    },
+    resumeCompany_profiles_button: {
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#cccccc',
+        padding: 8,
+    },
+});
 
 export default CandidatesCompanyScreen;

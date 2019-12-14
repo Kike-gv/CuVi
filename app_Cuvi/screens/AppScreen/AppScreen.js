@@ -21,6 +21,7 @@ import SignUpCompanyScreen from '../SignUpCompanyScreen';
 import LoginCompanyScreen from '../LoginCompanyScreen';
 import CandidatesCompanyScreen from '../CandidatesCompanyScreen';
 import ResumeCompanyScreen from '../ResumeCompanyScreen';
+import CompanyLandingScreen from '../CompanyLandingScreen';
 
 
 
@@ -118,6 +119,29 @@ const LoginStack = createStackNavigator({
     },
 });
 
+const JobOfferStack = createStackNavigator({
+    'Landing': {
+        screen: CompanyLandingScreen,
+        navigationOptions: () => ({
+            headerShown: false,
+        }),
+    },
+    'JobOffersDetail': {
+        screen: ResumeCompanyScreen,
+        navigationOptions: () => ({
+            title: `Detalle de la oferta`,
+            headerBackTitle: null,
+        }),
+    },
+    'CandidatesDetail': {
+        screen: CandidatesCompanyScreen,
+        navigationOptions: () => ({
+            title: `Lista de candidatos`,
+            headerBackTitle: null,
+        }),
+    },
+});
+
 
 
 const TabNavigator = createBottomTabNavigator({
@@ -184,7 +208,7 @@ const TabNavigatorCompany = createBottomTabNavigator({
 const switchNavigator = createSwitchNavigator({
     'AuthLoading': AuthLoadingScreen,
     'ApplicationScreens': TabNavigator,
-    'CompanyScreens': TabNavigatorCompany,
+    'CompanyScreens': JobOfferStack,
     'Auth': LoginStack,
 },
     {
