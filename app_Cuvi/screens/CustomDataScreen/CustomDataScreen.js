@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Text, View, ScrollView, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../redux/actions/userActions';
 
-import { getItem, getAllRealTime, deleteItem, addItemWithId } from '../../services/database';
+import { getItem, addItemWithId } from '../../services/database';
 
 import CuviHeader from '../../components/CuviHeader';
 import CuviButton from '../../components/CuviButton';
@@ -24,7 +24,7 @@ const CustomDataScreen = ({ navigation }) => {
         setCvData({ ...cvData, [id]: value });
     }
 
-    const CuviHeaderFunction = async() => {
+    const CuviHeaderFunction = async () => {
         const newUser = { ...userRedux, ...cvData };
         dispatch(setUser(newUser));
 

@@ -6,7 +6,6 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../redux/actions/userActions';
 
 import { getItem, getAllRealTime, deleteItem, addItemWithId } from '../../services/database';
-import { signup, registerAuthObserver } from '../../services/auth';
 import { uploadFile, getRealUri } from '../../services/storage';
 
 import { logout } from '../../services/auth';
@@ -18,12 +17,11 @@ import Constants from 'expo-constants';
 import UserCard from '../../components/UserCard';
 import CuviButton from '../../components/CuviButton';
 
-let cancelObserver;
 
 const SettingsScreen = ({ navigation, }) => {
     const state = useSelector(state => state);
     const userRedux = useSelector(state => state.user);
-    console.log("TCL: AuthLoadingScreen -> state", state)
+    console.log("TCL: SettingsScreen -> userRedux", userRedux)
     const dispatch = useDispatch();
 
     const [cvData, setCvData] = useState({ ...userRedux });
@@ -62,44 +60,29 @@ const SettingsScreen = ({ navigation, }) => {
             setProfileImage(ImgUri);
             let imageUpload = await uploadFile(ImgUri, userRedux.email);
             if (imageUpload) {
-                cancelObserver = registerAuthObserver(async (user) => {
-                    if (user) {
-                        const realUri = await getRealUri(userRedux.email);
-                        console.log("TCL: cancelObserver -> realUri", realUri)
-                        const profile = await getItem('Usuarios', user.uid);
-                        await addItemWithId(
-                            'Usuarios',
-                            { ...profile, cvPhoto: realUri },
-                            user.uid
-                        );
-
-                    }
-                    else {
-                        console.log('no encuentro el user')
-                    }
-                });
+                const realUri = await getRealUri(userRedux.email);
+                console.log("TCL: cancelObserver -> realUri", realUri)
+                const profile = await getItem('Usuarios', userRedux.id);
+                await addItemWithId(
+                    'Usuarios',
+                    { ...profile, cvPhoto: realUri },
+                    userRedux.id
+                );
             }
         }
     }
 
-    const setcolor=(color)=>{
+    const setcolor = async(color) => {
         console.log("TCL: setcolor -> color", color)
         setCvData({ ...cvData, cvColor: color });
-        cancelObserver = registerAuthObserver(async (user) => {
-            if (user) {
-                const profile = await getItem('Usuarios', user.uid);
-                await addItemWithId(
-                    'Usuarios',
-                    { ...profile, cvColor: color},
-                    user.uid
-                );
-
-            }
-            else {
-                console.log('no encuentro el user')
-            }
-        });
+        const profile = await getItem('Usuarios', userRedux.id);
+        await addItemWithId(
+            'Usuarios',
+            { ...profile, cvColor: color },
+            userRedux.id
+        );
     }
+
 
 
 
