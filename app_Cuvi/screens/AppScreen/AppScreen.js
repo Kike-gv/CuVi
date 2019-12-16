@@ -142,12 +142,25 @@ const JobOfferStack = createStackNavigator({
     },
 });
 
+const userStack = createStackNavigator({
+    'settings': {
+        screen: DasboardScreen,
+        navigationOptions: () => ({
+            headerShown: false,
+        }),
+    },
+    'userCV': {
+        screen: CustomDataScreen,
+        navigationOptions: () => ({
+            title: `Lista de candidatos`,
+            headerBackTitle: null,
+        }),
+    },
+});
 
 
 const TabNavigator = createBottomTabNavigator({
-    'Inicio': DasboardScreen,
-    // 'Market': HomeStack,
-    'Mis datos': CustomDataScreen,
+    'Mis datos': userStack,
     'Mi cuenta': SettingsScreen
 },
     {
@@ -156,11 +169,10 @@ const TabNavigator = createBottomTabNavigator({
                 const { routeName } = navigation.state;
                 let IconComponent = Ionicons;
                 let iconName;
-                if (routeName === 'Inicio') {
-                    iconName = `md-home`;
-                    // } else if (routeName === 'Market') {
-                    //     iconName = `md-albums`;
-                } else if (routeName === 'Mis datos') {
+                // if (routeName === 'Inicio') {
+                //     iconName = `md-home`;
+                // } else 
+                if (routeName === 'Mis datos') {
                     iconName = `md-list-box`;
                 } else if (routeName === 'Mi cuenta') {
                     iconName = `md-person`;
@@ -175,34 +187,9 @@ const TabNavigator = createBottomTabNavigator({
             activeTintColor: '#c78021',
             inactiveTintColor: 'gray',
         },
-    });
+    }
+);
 
-const TabNavigatorCompany = createBottomTabNavigator({
-    'Candidatos': CandidatesCompanyScreen,
-    'Ofertas': ResumeCompanyScreen,
-    // 'Market': HomeStack,
-},
-    {
-        defaultNavigationOptions: ({ navigation }) => ({
-            tabBarIcon: ({ focused, horizontal, tintColor }) => {
-                const { routeName } = navigation.state;
-                let IconComponent = Ionicons;
-                let iconName;
-                if (routeName === 'Candidatos') {
-                    iconName = `md-people`;
-                } else if (routeName === 'Ofertas') {
-                    iconName = `md-list-box`;
-                }
-
-                // You can return any component that you like here!
-                return <IconComponent name={iconName} size={25} color={tintColor} />;
-            },
-        }),
-        tabBarOptions: {
-            activeTintColor: '#c78021',
-            inactiveTintColor: 'gray',
-        },
-    });
 
 
 const switchNavigator = createSwitchNavigator({

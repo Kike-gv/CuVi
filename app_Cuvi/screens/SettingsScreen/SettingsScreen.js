@@ -70,7 +70,7 @@ const SettingsScreen = ({ navigation, }) => {
         }
     }
 
-    const setcolor = async(color) => {
+    const setcolor = async (color) => {
         console.log("TCL: setcolor -> color", color)
         setCvData({ ...cvData, cvColor: color });
         const profile = await getItem('Usuarios', userRedux.id);

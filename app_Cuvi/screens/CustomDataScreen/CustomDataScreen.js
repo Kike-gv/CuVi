@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { connect, useSelector, useDispatch } from 'react-redux';
@@ -19,8 +19,13 @@ const CustomDataScreen = ({ navigation }) => {
 
     const [cvData, setCvData] = useState({ ...userRedux });
 
+    useEffect(() => {
 
-    const setValue = (value, id) => {
+        console.log("TCL: CustomDataScreen -> cvData.cvEmail", cvData.cvEmail)
+
+    }, [cvData.cvEmail])
+
+    const setInputValue = (value, id) => {
         setCvData({ ...cvData, [id]: value });
     }
 
@@ -38,44 +43,43 @@ const CustomDataScreen = ({ navigation }) => {
 
 
     return (
-
         <ImageBackground source={{ uri: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' }} style={styles.dataBgContainer}>
             <CuviHeader bgButtonColor='#383838' buttonText='Actualiza el CV' textColor='white' buttonEvent={CuviHeaderFunction} />
             <ScrollView style={styles.dataContainer}>
                 <View style={styles.dataContainer_block}>
                     <Text style={styles.dataContainer_block_title}>Información básica sobre mí</Text>
 
-                    <CuviInput background='noBackground' id='cvName' inputValueFunction={setValue} inputValueGet={cvData.cvName} showLabel label='Nombre Completo' placeholder='John Doe' textColor='#383838' typeInput='text' />
+                    <CuviInput background='noBackground' id='cvName' inputValueFunction={setInputValue} inputValueGet={cvData.cvName} showLabel label='Nombre Completo' placeholder='John Doe' textColor='#383838' typeInput='text' />
 
-                    <CuviDatePicker placeholder='Fecha de nacimiento' id='cvBirthday' datePickerValueFunction={setValue} datePickerValueGet={cvData.cvBirthday} />
+                    <CuviDatePicker placeholder='Fecha de nacimiento' id='cvBirthday' datePickerValueFunction={setInputValue} datePickerValueGet={cvData.cvBirthday} />
 
-                    <CuviInput background='noBackground' id='cvTelephone' inputValueFunction={setValue} inputValueGet={cvData.cvTelephone} showLabel label='Teléfono' placeholder='666777999' textColor='#383838' typeInput='text' />
+                    <CuviInput background='noBackground' id='cvTelephone' inputValueFunction={setInputValue} inputValueGet={cvData.cvTelephone} showLabel label='Teléfono' placeholder='666777999' textColor='#383838' typeInput='text' />
 
-                    <CuviInput background='noBackground' id='cvEmail' inputValueFunction={setValue} inputValueGet={cvData.cvEmail} showLabel label='Correo electrónico' placeholder='micorreo@ejemplo.com' textColor='#383838' typeInput='email-address' />
+                    <CuviInput background='noBackground' id='cvEmail' inputValueFunction={setInputValue} inputValueGet={cvData.cvEmail} showLabel label='Correo electrónico' placeholder='micorreo@ejemplo.com' textColor='#383838' typeInput='email-address' />
 
-                    <CuviInput background='noBackground' id='cvPortfolio' inputValueFunction={setValue} inputValueGet={cvData.cvPortfolio} showLabel label='Porfolio' placeholder='www.portfolio.com' textColor='#383838' typeInput='text' />
+                    <CuviInput background='noBackground' id='cvPortfolio' inputValueFunction={setInputValue} inputValueGet={cvData.cvPortfolio} showLabel label='Porfolio' placeholder='www.portfolio.com' textColor='#383838' typeInput='text' />
 
-                    <CuviInput background='noBackground' id='cvRRSS' inputValueFunction={setValue} inputValueGet={cvData.cvRRSS} showLabel label='Perfil de Linkedin' placeholder='www.linkedin.com/profile...' textColor='#383838' typeInput='text' />
+                    <CuviInput background='noBackground' id='cvRRSS' inputValueFunction={setInputValue} inputValueGet={cvData.cvRRSS} showLabel label='Perfil de Linkedin' placeholder='www.linkedin.com/profile...' textColor='#383838' typeInput='text' />
                 </View>
 
 
                 <View style={styles.dataContainer_block}>
                     <Text style={styles.dataContainer_block_title}>Presentación</Text>
 
-                    <CuviInput background='noBackground' id='cvPresentation' inputValueFunction={setValue} inputValueGet={cvData.cvPresentation} showLabel label='Breve resumen' placeholder='Me considero una persona...' textColor='#383838' typeInput='multiline' />
+                    <CuviInput background='noBackground' id='cvPresentation' inputValueFunction={setInputValue} inputValueGet={cvData.cvPresentation} showLabel label='Breve resumen' placeholder='Me considero una persona...' textColor='#383838' typeInput='multiline' />
                 </View>
 
 
                 <View style={styles.dataContainer_block}>
                     <Text style={styles.dataContainer_block_title}>Estudios</Text>
                     <View>
-                        <CuviInput background='noBackground' id='cvStudyName' inputValueFunction={setValue} inputValueGet={cvData.cvStudyName} showLabel label='Estudios' placeholder='Graduado en medicina' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvStudyName' inputValueFunction={setInputValue} inputValueGet={cvData.cvStudyName} showLabel label='Estudios' placeholder='Graduado en medicina' textColor='#383838' typeInput='text' />
 
-                        <CuviInput background='noBackground' id='cvStudyCenter' inputValueFunction={setValue} inputValueGet={cvData.cvStudyCenter} showLabel label='Centro de estudios' placeholder='Universidad de Barcelona' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvStudyCenter' inputValueFunction={setInputValue} inputValueGet={cvData.cvStudyCenter} showLabel label='Centro de estudios' placeholder='Universidad de Barcelona' textColor='#383838' typeInput='text' />
 
-                        <CuviDatePicker placeholder='Fecha de inicio' id='cvStudyBegin' datePickerValueFunction={setValue} datePickerValueGet={cvData.cvStudyBegin} />
+                        <CuviDatePicker placeholder='Fecha de inicio' id='cvStudyBegin' datePickerValueFunction={setInputValue} datePickerValueGet={cvData.cvStudyBegin} />
 
-                        <CuviDatePicker placeholder='Fecha de finalización' id='cvStudyEnd' datePickerValueFunction={setValue} datePickerValueGet={cvData.cvStudyEnd} />
+                        <CuviDatePicker placeholder='Fecha de finalización' id='cvStudyEnd' datePickerValueFunction={setInputValue} datePickerValueGet={cvData.cvStudyEnd} />
 
                     </View>
 
@@ -86,13 +90,13 @@ const CustomDataScreen = ({ navigation }) => {
                 <View style={styles.dataContainer_block}>
                     <Text style={styles.dataContainer_block_title}>Experiencia laboral</Text>
                     <View>
-                        <CuviInput background='noBackground' id='cvJobPosition' inputValueFunction={setValue} inputValueGet={cvData.cvJobPosition} showLabel label='Cargo' placeholder='cirujano general' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvJobPosition' inputValueFunction={setInputValue} inputValueGet={cvData.cvJobPosition} showLabel label='Cargo' placeholder='cirujano general' textColor='#383838' typeInput='text' />
 
-                        <CuviInput background='noBackground' id='cvJobCompany' inputValueFunction={setValue} inputValueGet={cvData.cvJobCompany} showLabel label='Empresa' placeholder='Quirón' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvJobCompany' inputValueFunction={setInputValue} inputValueGet={cvData.cvJobCompany} showLabel label='Empresa' placeholder='Quirón' textColor='#383838' typeInput='text' />
 
-                        <CuviDatePicker placeholder='Fecha de inicio' id='cvJobBegin' datePickerValueFunction={setValue} datePickerValueGet={cvData.cvJobBegin} />
+                        <CuviDatePicker placeholder='Fecha de inicio' id='cvJobBegin' datePickerValueFunction={setInputValue} datePickerValueGet={cvData.cvJobBegin} />
 
-                        <CuviDatePicker placeholder='Fecha de finalización. Si no tienes, déjalo en blanco' id='cvJobEnd' datePickerValueFunction={setValue} datePickerValueGet={cvData.cvJobEnd} />
+                        <CuviDatePicker placeholder='Fecha de finalización. Si no tienes, déjalo en blanco' id='cvJobEnd' datePickerValueFunction={setInputValue} datePickerValueGet={cvData.cvJobEnd} />
 
                     </View>
 
@@ -103,7 +107,7 @@ const CustomDataScreen = ({ navigation }) => {
                 <View style={styles.dataContainer_block}>
                     <Text style={styles.dataContainer_block_title}>Idiomas</Text>
                     <View>
-                        <CuviInput background='noBackground' id='cvLanguage' inputValueFunction={setValue} inputValueGet={cvData.cvLanguage} showLabel label='Idioma' placeholder='Inglés' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvLanguage' inputValueFunction={setInputValue} inputValueGet={cvData.cvLanguage} showLabel label='Idioma' placeholder='Inglés' textColor='#383838' typeInput='text' />
                     </View>
 
                     <CuviButton name='Más idiomas' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} />
@@ -113,7 +117,7 @@ const CustomDataScreen = ({ navigation }) => {
                 <View style={styles.dataContainer_block}>
                     <Text style={styles.dataContainer_block_title}>Habilidades clave (Máx. 6)</Text>
                     <View>
-                        <CuviInput background='noBackground' id='cvSkill' inputValueFunction={setValue} inputValueGet={cvData.cvSkill} showLabel label='Habilidad' placeholder='primeros auxilios' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvSkill' inputValueFunction={setInputValue} inputValueGet={cvData.cvSkill} showLabel label='Habilidad' placeholder='primeros auxilios' textColor='#383838' typeInput='text' />
                     </View>
 
                     <CuviButton name='Más habilidades clave' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} />
@@ -123,7 +127,7 @@ const CustomDataScreen = ({ navigation }) => {
                 <View style={styles.dataContainer_block}>
                     <Text style={styles.dataContainer_block_title}>Hobbies (Máx. 6)</Text>
                     <View>
-                        <CuviInput background='noBackground' id='cvHobby' inputValueFunction={setValue} inputValueGet={cvData.cvHobby} showLabel label='Hobby' placeholder='Viajar' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvHobby' inputValueFunction={setInputValue} inputValueGet={cvData.cvHobby} showLabel label='Hobby' placeholder='Viajar' textColor='#383838' typeInput='text' />
                     </View>
 
                     <CuviButton name='Más intereses' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} />

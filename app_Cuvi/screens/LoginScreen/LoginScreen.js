@@ -25,8 +25,6 @@ const LoginScreen = ({ navigation }) => {
                 alert('tu correo y/o password son erróneos');
             }
         }
-        // await AsyncStorage.setItem('userToken', 'abc');
-        // navigation.navigate('ApplicationScreens');
     };
 
     const setValue = (value, id) => {
