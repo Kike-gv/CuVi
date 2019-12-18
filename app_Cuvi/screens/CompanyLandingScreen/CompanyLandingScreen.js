@@ -47,8 +47,9 @@ const CompanyLandingScreen = ({ navigation }) => {
 
     return (
         <ScrollView style={styles.companyLanding}>
-
-            <CuviButton name='Nueva oferta' textColor='white' bgColor='#c78021' clickedEvent={newOffer} />
+            <View style={styles.companyLanding_topButton}>
+                <CuviButton name='Nueva oferta' textColor='white' bgColor='#c78021' clickedEvent={newOffer} />
+            </View>
             <View>
                 {jobs !== '' && jobs.map(job =>
                     <TouchableOpacity style={styles.companyLanding_offer} key={job.offerName} onPress={() => goToOffer(job)}>
@@ -59,7 +60,7 @@ const CompanyLandingScreen = ({ navigation }) => {
                 )}
             </View>
 
-            <CuviButton name='Log out' icon='md-exit' textColor='#383838' bgColor='rgba(199, 128, 33, 0.25)' clickedEvent={signOutAsync} />
+            <CuviButton name='Log out' icon='md-exit' textColor='white' bgColor='rgba(199, 128, 33, 1)' clickedEvent={signOutAsync} />
         </ScrollView>
     );
 }
@@ -67,18 +68,20 @@ const CompanyLandingScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     companyLanding: {
         padding: 16,
-        marginTop: 32
+        backgroundColor: '#383838'
+    },
+    companyLanding_topButton:{
+        marginTop: 32,
     },
     companyLanding_offer: {
         padding: 8,
-        borderWidth: 1,
-        borderColor: '#cccccc',
-        borderRadius: 4,
+        backgroundColor: '#000000',
+        borderRadius: 10,
         marginBottom: 16
     },
     companyLanding_offer_title: {
         fontSize: 20,
-        color: '#383838',
+        color: 'white',
         marginBottom: 10,
     },
     companyLanding_offer_candidates: {

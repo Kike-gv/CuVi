@@ -22,13 +22,6 @@ const CandidatesCompanyScreen = ({ navigation }) => {
     const [selectedUsersCheck, setSelectedUsersCheck] = useState([]);
     const [checked, setChecked] = useState(false);
 
-    // console.log("TCL: OfferCompanyScreen -> chosenUsers", chosenUsers)
-
-    // useEffect(() => {
-    //     dispatch(setJobOffer(job));
-    //     console.log("TCL: CandidatesCompanyScreen -> jobOfferRedux", jobOfferRedux)
-    // }, [])
-
 
 
     const searchResults = async () => {
@@ -37,15 +30,15 @@ const CandidatesCompanyScreen = ({ navigation }) => {
         users.map((user) => {
             if (user.cvSkill.toLowerCase() === filterWord.toLowerCase()) {
                 selectedUsers.push(user);
-            } else if(user.cvSkill2 && user.cvSkill2.toLowerCase() === filterWord.toLowerCase()){
+            } else if (user.cvSkill2 && user.cvSkill2.toLowerCase() === filterWord.toLowerCase()) {
                 selectedUsers.push(user);
-            } else if(user.cvSkill3 && user.cvSkill3.toLowerCase() === filterWord.toLowerCase()){
+            } else if (user.cvSkill3 && user.cvSkill3.toLowerCase() === filterWord.toLowerCase()) {
                 selectedUsers.push(user);
-            } else if(user.cvSkill4 && user.cvSkill4.toLowerCase() === filterWord.toLowerCase()){
+            } else if (user.cvSkill4 && user.cvSkill4.toLowerCase() === filterWord.toLowerCase()) {
                 selectedUsers.push(user);
-            } else if(user.cvSkill5 && user.cvSkill5.toLowerCase() === filterWord.toLowerCase()){
+            } else if (user.cvSkill5 && user.cvSkill5.toLowerCase() === filterWord.toLowerCase()) {
                 selectedUsers.push(user);
-            } else if(user.cvSkill6 && user.cvSkill6.toLowerCase() === filterWord.toLowerCase()){
+            } else if (user.cvSkill6 && user.cvSkill6.toLowerCase() === filterWord.toLowerCase()) {
                 selectedUsers.push(user);
             }
         })
@@ -74,23 +67,25 @@ const CandidatesCompanyScreen = ({ navigation }) => {
         <ScrollView style={styles.candidatesCompany}>
             <View style={styles.resumeCompany_search}>
                 <TextInput style={styles.resumeCompany_profiles_input} placeholder='busca por talento' value={filterWord} onChangeText={(text) => { setFilterWord(text) }} />
-                <TouchableOpacity onPress={() => searchResults()}><Text>busca</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.resumeCompany_profiles_button} onPress={() => searchResults()}><Text style={styles.resumeCompany_profiles_button_text}>busca</Text></TouchableOpacity>
             </View>
 
             <View>
                 {chosenUsers !== '' && chosenUsers.map((userFiltered) =>
-                    <View key={userFiltered.email}>
+                    <View key={userFiltered.email} style={styles.resumeCompany_person}>
                         <UserCard profileImage={userFiltered.cvPhoto}
                             userCVInfo={userFiltered}
                             bgColor={userFiltered.cvColor}
                         />
                         <CheckBox
                             center
-                            title='Click Here'
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
                             checked={selectedUsersCheck.indexOf(userFiltered.email) >= 0}
                             onPress={() => { selectUserForJob(userFiltered.email) }}
+                            containerStyle={styles.resumeCompany_person_checkbox}
+                            textStyle={styles.resumeCompany_person_checkbox}
+                            checkedColor='white'
                         />
                     </View>)
                 }
@@ -103,6 +98,7 @@ const CandidatesCompanyScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     candidatesCompany: {
         padding: 16,
+        backgroundColor: '#383838'
     },
     resumeCompany_search: {
         flexDirection: 'row',
@@ -111,16 +107,31 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     resumeCompany_profiles_input: {
-        fontSize: 18,
-        color: '#383838',
-        borderBottomColor: '#cccccc',
-        borderBottomWidth: 1
+        width: '75%',
+        fontSize: 20,
+        color: 'white',
+        borderBottomColor: 'white',
+        borderBottomWidth: 1,
+        padding: 8,
     },
     resumeCompany_profiles_button: {
-        borderRadius: 4,
+        borderRadius: 10,
         borderWidth: 1,
-        borderColor: '#cccccc',
+        borderColor: 'white',
         padding: 8,
+    },
+    resumeCompany_profiles_button_text: {
+        color: 'white',
+        fontSize: 20,
+    },
+    resumeCompany_person: {
+        position: 'relative',
+    },
+    resumeCompany_person_checkbox: {
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        bottom: 6,
+        right: 1,
     },
 });
 

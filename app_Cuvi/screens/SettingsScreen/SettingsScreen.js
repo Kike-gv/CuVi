@@ -71,7 +71,6 @@ const SettingsScreen = ({ navigation, }) => {
     }
 
     const setcolor = async (color) => {
-        console.log("TCL: setcolor -> color", color)
         setCvData({ ...cvData, cvColor: color });
         const profile = await getItem('Usuarios', userRedux.id);
         await addItemWithId(
@@ -91,10 +90,11 @@ const SettingsScreen = ({ navigation, }) => {
 
             <UncontrolledColorPicker chosenColor={setcolor} />
 
-            <CuviButton name='Cambia tu foto de perfil' icon='md-image' textColor='white' bgColor='rgba(199, 128, 33, 1)' clickedEvent={pickImge} />
+            <View style={styles.settingsContainer_buttons}>
+                <CuviButton name='Cambia tu foto de perfil' icon='md-image' textColor='white' bgColor='rgba(199, 128, 33, 1)' clickedEvent={pickImge} />
 
-            <CuviButton name='Log out' icon='md-exit' textColor='white' bgColor='rgba(199, 128, 33, 1)' clickedEvent={signOutAsync} />
-
+                <CuviButton name='Log out' icon='md-exit' textColor='white' bgColor='rgba(199, 128, 33, 1)' clickedEvent={signOutAsync} />
+            </View>
         </View>
     );
 }
@@ -106,6 +106,9 @@ const styles = StyleSheet.create({
         height: '100%',
         padding: 16,
         paddingTop: 32
+    },
+    settingsContainer_buttons: {
+        marginTop: 32,
     },
 });
 

@@ -86,7 +86,7 @@ const CustomDataScreen = ({ navigation }) => {
 
                     </View>
 
-                    <CuviButton name='Más estudios' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} />
+                    {/* <CuviButton name='Más estudios' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} /> */}
                 </View>
 
 
@@ -99,11 +99,11 @@ const CustomDataScreen = ({ navigation }) => {
 
                         <CuviDatePicker placeholder='Fecha de inicio' id='cvJobBegin' datePickerValueFunction={setInputValue} datePickerValueGet={cvData.cvJobBegin} />
 
-                        <CuviDatePicker placeholder='Fecha de finalización. Si no tienes, déjalo en blanco' id='cvJobEnd' datePickerValueFunction={setInputValue} datePickerValueGet={cvData.cvJobEnd} />
+                        {/* <CuviDatePicker placeholder='Fecha de finalización. Si no tienes, déjalo en blanco' id='cvJobEnd' datePickerValueFunction={setInputValue} datePickerValueGet={cvData.cvJobEnd} /> */}
 
                     </View>
 
-                    <CuviButton name='Más experiencias laborales' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} />
+                    {/* <CuviButton name='Más experiencias laborales' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} /> */}
                 </View>
 
 
@@ -113,7 +113,7 @@ const CustomDataScreen = ({ navigation }) => {
                         <CuviInput background='noBackground' id='cvLanguage' inputValueFunction={setInputValue} inputValueGet={cvData.cvLanguage} showLabel label='Idioma' placeholder='Inglés' textColor='#383838' typeInput='text' />
                     </View>
 
-                    <CuviButton name='Más idiomas' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} />
+                    {/* <CuviButton name='Más idiomas' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} /> */}
                 </View>
 
 
@@ -130,13 +130,13 @@ const CustomDataScreen = ({ navigation }) => {
                 </View>
 
 
-                <View style={styles.dataContainer_block}>
-                    <Text style={styles.dataContainer_block_title}>Hobbies (Máx. 6)</Text>
+                <View style={styles.dataContainer_block_final}>
+                    <Text style={styles.dataContainer_block_title}>Hobby</Text>
                     <View>
                         <CuviInput background='noBackground' id='cvHobby' inputValueFunction={setInputValue} inputValueGet={cvData.cvHobby} showLabel label='Hobby' placeholder='Viajar' textColor='#383838' typeInput='text' />
                     </View>
 
-                    <CuviButton name='Más intereses' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} />
+                    {/* <CuviButton name='Más intereses' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} /> */}
                 </View>
             </ScrollView>
         </View>
@@ -154,6 +154,10 @@ const styles = StyleSheet.create({
     dataContainer_block: {
         padding: 8,
         marginBottom: 8
+    },
+    dataContainer_block_final:{
+        padding: 8,
+        marginBottom: 48
     },
     dataContainer_block_title: {
         color: 'white',
