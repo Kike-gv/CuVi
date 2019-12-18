@@ -43,8 +43,11 @@ const CustomDataScreen = ({ navigation }) => {
 
 
     return (
-        <ImageBackground source={{ uri: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' }} style={styles.dataBgContainer}>
-            <CuviHeader bgButtonColor='#383838' buttonText='Actualiza el CV' textColor='white' buttonEvent={CuviHeaderFunction} />
+        <View>
+            <View style={styles.dataContainer_block}>
+                <CuviButton name='Guarda los cambios' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={CuviHeaderFunction} />
+            </View>
+
             <ScrollView style={styles.dataContainer}>
                 <View style={styles.dataContainer_block}>
                     <Text style={styles.dataContainer_block_title}>Información básica sobre mí</Text>
@@ -115,12 +118,15 @@ const CustomDataScreen = ({ navigation }) => {
 
 
                 <View style={styles.dataContainer_block}>
-                    <Text style={styles.dataContainer_block_title}>Habilidades clave (Máx. 6)</Text>
+                    <Text style={styles.dataContainer_block_title}>Habilidades clave</Text>
                     <View>
                         <CuviInput background='noBackground' id='cvSkill' inputValueFunction={setInputValue} inputValueGet={cvData.cvSkill} showLabel label='Habilidad' placeholder='primeros auxilios' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvSkill2' inputValueFunction={setInputValue} inputValueGet={cvData.cvSkill2} showLabel label='Habilidad' placeholder='primeros auxilios' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvSkill3' inputValueFunction={setInputValue} inputValueGet={cvData.cvSkill3} showLabel label='Habilidad' placeholder='primeros auxilios' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvSkill4' inputValueFunction={setInputValue} inputValueGet={cvData.cvSkill4} showLabel label='Habilidad' placeholder='primeros auxilios' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvSkill5' inputValueFunction={setInputValue} inputValueGet={cvData.cvSkill5} showLabel label='Habilidad' placeholder='primeros auxilios' textColor='#383838' typeInput='text' />
+                        <CuviInput background='noBackground' id='cvSkill6' inputValueFunction={setInputValue} inputValueGet={cvData.cvSkill6} showLabel label='Habilidad' placeholder='primeros auxilios' textColor='#383838' typeInput='text' />
                     </View>
-
-                    <CuviButton name='Más habilidades clave' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} />
                 </View>
 
 
@@ -133,24 +139,20 @@ const CustomDataScreen = ({ navigation }) => {
                     <CuviButton name='Más intereses' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={''} />
                 </View>
             </ScrollView>
-        </ImageBackground>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     dataContainer: {
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        padding: 8,
-    },
-    dataBgContainer: {
-        width: '100%',
-        height: '100%'
+        // backgroundColor: 'rgba(0,0,0,0.5)',
+        // padding: 8,
+        height:'90%',
     },
     dataContainer_block: {
         backgroundColor: 'white',
         borderRadius: 10,
         padding: 8,
-        paddingRight: 32,
         marginBottom: 8
     },
     dataContainer_block_title: {

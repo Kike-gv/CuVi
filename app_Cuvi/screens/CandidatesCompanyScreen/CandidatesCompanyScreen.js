@@ -35,7 +35,17 @@ const CandidatesCompanyScreen = ({ navigation }) => {
         const users = await getAll('Usuarios');
         const selectedUsers = [];
         users.map((user) => {
-            if (user.cvSkill === filterWord) {
+            if (user.cvSkill.toLowerCase() === filterWord.toLowerCase()) {
+                selectedUsers.push(user);
+            } else if(user.cvSkill2 && user.cvSkill2.toLowerCase() === filterWord.toLowerCase()){
+                selectedUsers.push(user);
+            } else if(user.cvSkill3 && user.cvSkill3.toLowerCase() === filterWord.toLowerCase()){
+                selectedUsers.push(user);
+            } else if(user.cvSkill4 && user.cvSkill4.toLowerCase() === filterWord.toLowerCase()){
+                selectedUsers.push(user);
+            } else if(user.cvSkill5 && user.cvSkill5.toLowerCase() === filterWord.toLowerCase()){
+                selectedUsers.push(user);
+            } else if(user.cvSkill6 && user.cvSkill6.toLowerCase() === filterWord.toLowerCase()){
                 selectedUsers.push(user);
             }
         })

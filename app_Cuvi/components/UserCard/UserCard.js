@@ -62,12 +62,12 @@ const UserCard = ({ profileImage, userCVInfo, bgColor }) => {
             <Text style={styles.userCard_userJob}>{userCVInfo.cvJobPosition}</Text>
             <Text style={styles.userCard_userJob}>{userCVInfo.cvJobCompany} - 4 años</Text>
             <View style={styles.userCard_skillsContainer}>
-                <Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill}</Text>
-                <Text style={styles.userCard_skillsContainer_skill}>Resistente</Text>
-                <Text style={styles.userCard_skillsContainer_skill}>Buen catador</Text>
-                <Text style={styles.userCard_skillsContainer_skill}>Siempre tiene bateria</Text>
-                <Text style={styles.userCard_skillsContainer_skill}>React Native</Text>
-                <Text style={styles.userCard_skillsContainer_skill}>Coach de La Voz</Text>
+                {userCVInfo.cvSkill !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill}</Text>}
+                {userCVInfo.cvSkill2 !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill2}</Text>}
+                {userCVInfo.cvSkill3 !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill3}</Text>}
+                {userCVInfo.cvSkill4 !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill4}</Text>}
+                {userCVInfo.cvSkill5 !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill5}</Text>}
+                {userCVInfo.cvSkill6 !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill6}</Text>}
             </View>
         </View>
     );
