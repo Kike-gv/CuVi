@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, ScrollView, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, Image, ScrollView, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../redux/actions/userActions';
@@ -17,6 +17,7 @@ const CompanyLandingScreen = ({ navigation }) => {
     const state = useSelector(state => state);
 
     const [jobs, setJobs] = useState([]);
+    console.log("TCL: CompanyLandingScreen -> jobs", jobs)
 
     useEffect(() => {
         dispatch(setUser({ ...userRedux, companyId: userRedux.id }));
@@ -48,6 +49,8 @@ const CompanyLandingScreen = ({ navigation }) => {
     return (
         <ScrollView style={styles.companyLanding}>
             <View style={styles.companyLanding_topButton}>
+                {jobs.length === 0 && <Image style={styles.companyLanding_emptyImage} source={require('../../icons/emptyState.png')} />}
+                {jobs.length === 0 && <Text style={styles.companyLanding_Text}>Vaya, parece que aún no has publicado ninguna oferta de trabajo.</Text>}
                 <CuviButton name='Nueva oferta' textColor='white' bgColor='#c78021' clickedEvent={newOffer} />
             </View>
             <View>
@@ -70,8 +73,20 @@ const styles = StyleSheet.create({
         padding: 16,
         backgroundColor: '#383838'
     },
-    companyLanding_topButton:{
+    companyLanding_topButton: {
         marginTop: 32,
+    },
+    companyLanding_emptyImage: {
+        width: '90%',
+        marginLeft: '10%',
+        height: 400,
+        resizeMode: 'contain',
+        marginBottom: 16,
+    },
+    companyLanding_Text: {
+        fontSize: 20,
+        color: '#FFFFFF',
+        marginBottom: 16,
     },
     companyLanding_offer: {
         padding: 8,

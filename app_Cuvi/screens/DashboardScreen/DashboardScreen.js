@@ -24,7 +24,7 @@ const DashboardScreen = ({ navigation }) => {
             <Text style={styles.dashboardContainer_generalTitle}>Hola {user.name && user.name}, este es tu muro.</Text>
 
             <CuviButton name='Rellena tu CV con tus datos' icon='md-image' textColor='white' bgColor='rgba(199, 128, 33, 1)' clickedEvent={updateCv} />
-            <Image style={styles.dashboardContainer_emptyImage} source={require('./emptyState.png')} />
+            <Image style={styles.dashboardContainer_emptyImage} source={require('../../icons/emptyState.png')} />
             <Text style={styles.dashboardContainer_Text}>Vaya, parece que aún no has escogido ningún modelo de CV.</Text>
             <Text style={styles.dashboardContainer_SubText}>*Proximamente tendremos los siguientes modelos en nuestra galería</Text>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
