@@ -23,7 +23,7 @@ const DashboardScreen = ({ navigation }) => {
 
             <CuviButton name='Rellena con tus datos' icon='md-image' textColor='#383838' bgColor='rgba(199, 128, 33, 0.25)' clickedEvent={updateCv} />
 
-            <View style={styles.cvContainer_Container}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 <TouchableOpacity style={styles.cvContainer_cvPreview}>
                     <Image style={styles.cvContainer_cvImage} source={{ uri: 'https://gosumo-cvtemplate.com/wp-content/uploads/2016/09/CV-Template-Zurich-500x722.png' }} />
                 </TouchableOpacity>
@@ -42,7 +42,7 @@ const DashboardScreen = ({ navigation }) => {
                 <TouchableOpacity style={styles.cvContainer_cvPreview}>
                     <Image style={styles.cvContainer_cvImage} source={{ uri: 'https://img.culturacolectiva.com/content/2016/03/formatos-para-curr%C3%ADculum-minimalista-high.jpg' }} />
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         </ScrollView>
     );
 
@@ -67,11 +67,9 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
     },
     cvContainer_cvPreview: {
-        width: '47%',
-        margin: '1%',
     },
     cvContainer_cvImage: {
-        width: '100%',
+        width: 200,
         height: 250,
         resizeMode: 'contain',
     },
