@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     cvCard_cvImage: {
         width: null,
         height: 300,
-        resizeMode: 'contain',
+        resizeMode: 'cover',
         marginBottom: 8,
     },
     cvCard_cvText: {

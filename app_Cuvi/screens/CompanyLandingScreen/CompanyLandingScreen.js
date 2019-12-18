@@ -17,7 +17,6 @@ const CompanyLandingScreen = ({ navigation }) => {
     const state = useSelector(state => state);
 
     const [jobs, setJobs] = useState([]);
-    console.log("TCL: CompanyLandingScreen -> jobs", jobs)
 
     useEffect(() => {
         dispatch(setUser({ ...userRedux, companyId: userRedux.id }));

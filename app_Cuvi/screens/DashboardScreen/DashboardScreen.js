@@ -30,10 +30,10 @@ const DashboardScreen = ({ navigation }) => {
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 <CVcard cvImage={'https://gosumo-cvtemplate.com/wp-content/uploads/2016/09/CV-Template-Zurich-500x722.png'} cvText={'Arizona'}/>
                 <CVcard cvImage={'https://img.culturacolectiva.com/content/2016/03/formatos-para-curr%C3%ADculum-minimalista-high.jpg'} cvText={'Fluid'}/>
-                <CVcard cvImage={'https://gosumo-cvtemplate.com/wp-content/uploads/2016/09/CV-Template-Zurich-500x722.png'} cvText={'Jeronime'}/>
-                <CVcard cvImage={'https://gosumo-cvtemplate.com/wp-content/uploads/2016/09/CV-Template-Zurich-500x722.png'} cvText={'Air'}/>
-                <CVcard cvImage={'https://gosumo-cvtemplate.com/wp-content/uploads/2016/09/CV-Template-Zurich-500x722.png'} cvText={'Savannah'}/>
-                <CVcard cvImage={'https://gosumo-cvtemplate.com/wp-content/uploads/2016/09/CV-Template-Zurich-500x722.png'} cvText={'Glam'}/>
+                <CVcard cvImage={'https://i.pinimg.com/originals/9f/17/ef/9f17ef8c87626bc8b52a1dab645ed18b.png'} cvText={'Savannah'}/>
+                <CVcard cvImage={'https://s.tmimgcdn.com/scr/1600x2400/64800/benjamin-thompson-multipurpose-elegant-resume-template-resume-template_64872-original.jpg'} cvText={'Air'}/>
+                <CVcard cvImage={'https://images.template.net/261/Free-Mechanic-Resume-2x.jpg'} cvText={'Tech'}/>
+                <CVcard cvImage={'https://i.etsystatic.com/14820047/r/il/9ea6cd/1477997782/il_794xN.1477997782_jxuz.jpg'} cvText={'Glam'}/>
             </ScrollView>
         </ScrollView>
     );
