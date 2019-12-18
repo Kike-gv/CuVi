@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, Image, ImageBackground, Button, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
 
+import moment from "moment";
+
 const UserCard = ({ profileImage, userCVInfo, bgColor }) => {
     const styles = StyleSheet.create({
         userCard: {
@@ -53,6 +55,16 @@ const UserCard = ({ profileImage, userCVInfo, bgColor }) => {
         },
     });
 
+    const [timeWorked, SetTimeWorked] = useState('0 years ago')
+
+    useEffect(() => {
+        const yearBeginJob = userCVInfo.cvJobBegin;
+        yearBeginJob.split('-').join('');
+        const totalTimeWorked = moment(yearBeginJob, "DDMMYYYY").fromNow();
+        SetTimeWorked(totalTimeWorked);
+    }, [])
+
+
     return (
         <View style={styles.userCard}>
             <View style={styles.userCard_photoCover}>
@@ -60,14 +72,14 @@ const UserCard = ({ profileImage, userCVInfo, bgColor }) => {
             </View>
             <Text style={styles.userCard_userName}>{userCVInfo.cvName}</Text>
             <Text style={styles.userCard_userJob}>{userCVInfo.cvJobPosition}</Text>
-            <Text style={styles.userCard_userJob}>{userCVInfo.cvJobCompany} - 4 años</Text>
+            <Text style={styles.userCard_userJob}>{userCVInfo.cvJobCompany} - {timeWorked}</Text>
             <View style={styles.userCard_skillsContainer}>
-                {userCVInfo.cvSkill !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill}</Text>}
-                {userCVInfo.cvSkill2 !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill2}</Text>}
-                {userCVInfo.cvSkill3 !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill3}</Text>}
-                {userCVInfo.cvSkill4 !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill4}</Text>}
-                {userCVInfo.cvSkill5 !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill5}</Text>}
-                {userCVInfo.cvSkill6 !== undefined &&<Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill6}</Text>}
+                {userCVInfo.cvSkill !== undefined && <Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill}</Text>}
+                {userCVInfo.cvSkill2 !== undefined && <Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill2}</Text>}
+                {userCVInfo.cvSkill3 !== undefined && <Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill3}</Text>}
+                {userCVInfo.cvSkill4 !== undefined && <Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill4}</Text>}
+                {userCVInfo.cvSkill5 !== undefined && <Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill5}</Text>}
+                {userCVInfo.cvSkill6 !== undefined && <Text style={styles.userCard_skillsContainer_skill}>{userCVInfo.cvSkill6}</Text>}
             </View>
         </View>
     );
