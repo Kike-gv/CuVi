@@ -114,15 +114,17 @@ const styles = StyleSheet.create({
 
     resumeCompany_profiles_button_full: {
         width: '100%',
+        justifyContent:'center',
+        alignItems:'center',
         borderRadius: 10,
         borderWidth: 1,
         borderColor: 'white',
-        padding: 8,
+        padding: 16,
         marginBottom: 16,
     },
     resumeCompany_profiles_button_text: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 16,
     },
 });
 

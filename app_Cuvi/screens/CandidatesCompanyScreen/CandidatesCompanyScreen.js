@@ -90,7 +90,7 @@ const CandidatesCompanyScreen = ({ navigation }) => {
                     </View>)
                 }
             </View>
-            <CuviButton name='Guarda los candidatos' textColor='white' bgColor='#c78021' clickedEvent={saveCandidates} />
+            <CuviButton name='Guarda los candidatos' textColor='white' bgColor='#c78021' clickedEvent={saveCandidates} style={styles.resumeCompany_lastItem}/>
         </ScrollView>
     );
 }
@@ -130,8 +130,11 @@ const styles = StyleSheet.create({
     resumeCompany_person_checkbox: {
         backgroundColor: 'transparent',
         position: 'absolute',
-        bottom: 6,
-        right: 1,
+        bottom: 10,
+        right: -9,
+    },
+    resumeCompany_lastItem: {
+        marginBottom:48,
     },
 });
 
