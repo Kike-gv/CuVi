@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, StyleSheet } from 'react-native';
 
 
@@ -12,24 +12,27 @@ const CuviInput = ({ id, label, placeholder, inputValueFunction, inputValueGet, 
             cuviInput: {
                 width: '100%',
                 minHeight: 50,
-                backgroundColor: 'rgba(255,255,255,0.8)',
+                backgroundColor: 'rgba(255,255,255, 1)',
                 paddingLeft: 16,
                 paddingRight: 16,
                 fontSize: 16,
-                borderRadius: 10,
+                borderBottomLeftRadius:10,
+                borderBottomRightRadius: 10,
                 color: textColor,
                 marginBottom: 16,
                 marginTop: 12,
-                borderWidth: 1,
-                borderColor: '#383838'
             },
             cuviInput_text: {
+                width: '100%',
                 position: 'absolute',
-                left: 13,
+                left: 0,
                 color: '#c78021',
                 fontSize: 10,
                 backgroundColor: 'white',
-                padding: 3
+                padding: 3,
+                paddingLeft: 16,
+                borderTopLeftRadius:10,
+                borderTopRightRadius: 10,
             }
 
         })

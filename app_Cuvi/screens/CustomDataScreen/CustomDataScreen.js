@@ -43,12 +43,12 @@ const CustomDataScreen = ({ navigation }) => {
 
 
     return (
-        <View>
+        <View style={styles.customData}>
             <View style={styles.dataContainer_block}>
                 <CuviButton name='Guarda los cambios' icon='md-add' textColor='white' bgColor='#c78021' clickedEvent={CuviHeaderFunction} />
             </View>
 
-            <ScrollView style={styles.dataContainer}>
+            <ScrollView style={styles.dataContainer_scroll}>
                 <View style={styles.dataContainer_block}>
                     <Text style={styles.dataContainer_block_title}>Información básica sobre mí</Text>
 
@@ -144,23 +144,23 @@ const CustomDataScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    dataContainer: {
+    customData:{
+        backgroundColor: '#383838',},
+    dataContainer_scroll: {
         // backgroundColor: 'rgba(0,0,0,0.5)',
         // padding: 8,
         height:'90%',
     },
     dataContainer_block: {
-        backgroundColor: 'white',
-        borderRadius: 10,
         padding: 8,
         marginBottom: 8
     },
     dataContainer_block_title: {
-        color: '#383838',
-        fontSize: 20,
+        color: 'white',
+        fontSize: 24,
         marginBottom: 16,
         marginTop: 8
-    }
+    },
 });
 
 export default CustomDataScreen;

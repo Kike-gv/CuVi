@@ -9,19 +9,24 @@ const CuviDatePicker = ({ placeholder, id, datePickerValueFunction, datePickerVa
     const styles = StyleSheet.create({
         cuviDatePicker: {
             width: '100%',
-            borderWidth: 1,
-            borderColor: '#383838',
+            backgroundColor:'white',
+            borderBottomLeftRadius:10,
+            borderBottomRightRadius: 10,
             borderRadius: 10,
             marginTop: 12,
             marginBottom: 16,
         },
         cuviDatePicker_text: {
+            width: '100%',
             position: 'absolute',
-            left: 13,
+            left: 0,
             color: '#c78021',
             fontSize: 10,
             backgroundColor: 'white',
-            padding: 3
+            padding: 3,
+            paddingLeft: 16,
+            borderTopLeftRadius:10,
+            borderTopRightRadius: 10,
         }
     });
 

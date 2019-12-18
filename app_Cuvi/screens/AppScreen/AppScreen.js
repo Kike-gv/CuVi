@@ -131,6 +131,13 @@ const JobOfferStack = createStackNavigator({
         navigationOptions: () => ({
             title: `Detalle de la oferta`,
             headerBackTitle: null,
+            headerStyle: {
+                backgroundColor: 'black',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
         }),
     },
     'CandidatesDetail': {
@@ -138,6 +145,13 @@ const JobOfferStack = createStackNavigator({
         navigationOptions: () => ({
             title: `Lista de candidatos`,
             headerBackTitle: null,
+            headerStyle: {
+                backgroundColor: 'black',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
         }),
     },
 });
@@ -154,6 +168,13 @@ const userStack = createStackNavigator({
         navigationOptions: () => ({
             title: `Lista de candidatos`,
             headerBackTitle: null,
+            headerStyle: {
+                backgroundColor: 'black',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
         }),
     },
 });
