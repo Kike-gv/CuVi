@@ -115,9 +115,10 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     resumeCompany_profiles_button: {
+        backgroundColor: '#555555',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'white',
+        borderColor: '#555555',
         padding: 8,
     },
     resumeCompany_profiles_button_text: {

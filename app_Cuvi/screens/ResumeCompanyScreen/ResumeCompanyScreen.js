@@ -81,7 +81,9 @@ const ResumeCompanyScreen = ({ navigation }) => {
                 </TouchableOpacity>
             </View>
 
-            {jobOfferRedux.offerCandidates !== undefined && jobOfferRedux.offerCandidates.length > 0 && <TouchableOpacity style={styles.resumeCompany_profiles_button_full} onPress={sendEmailToCandidate}><Text style={styles.resumeCompany_profiles_button_text}>Envia la oferta a los candidatos</Text></TouchableOpacity>}
+            {jobOfferRedux.offerCandidates !== undefined && jobOfferRedux.offerCandidates.length > 0 && <CuviButton name='Envia la oferta a los candidatos' textColor='white' bgColor='#555555' clickedEvent={sendEmailToCandidate} />}
+
+            
 
             <CuviButton name='Guarda la oferta' textColor='white' bgColor='#c78021' clickedEvent={updateOffer} />
         </View>
@@ -106,21 +108,11 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     resumeCompany_profiles_button: {
+        backgroundColor: '#555555',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'white',
+        borderColor: '#555555',
         padding: 8,
-    },
-
-    resumeCompany_profiles_button_full: {
-        width: '100%',
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: 'white',
-        padding: 16,
-        marginBottom: 16,
     },
     resumeCompany_profiles_button_text: {
         color: 'white',

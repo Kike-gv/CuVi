@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     companyLanding_offer: {
         padding: 8,
-        backgroundColor: '#000000',
+        backgroundColor: '#555555',
         borderRadius: 10,
         marginBottom: 16
     },
