@@ -91,9 +91,9 @@ const SettingsScreen = ({ navigation, }) => {
 
             <UncontrolledColorPicker chosenColor={setcolor} />
 
-            <CuviButton name='Cambia tu foto de perfil' icon='md-image' textColor='#383838' bgColor='rgba(199, 128, 33, 0.25)' clickedEvent={pickImge} />
+            <CuviButton name='Cambia tu foto de perfil' icon='md-image' textColor='white' bgColor='rgba(199, 128, 33, 1)' clickedEvent={pickImge} />
 
-            <CuviButton name='Log out' icon='md-exit' textColor='#383838' bgColor='rgba(199, 128, 33, 0.25)' clickedEvent={signOutAsync} />
+            <CuviButton name='Log out' icon='md-exit' textColor='white' bgColor='rgba(199, 128, 33, 1)' clickedEvent={signOutAsync} />
 
         </View>
     );
@@ -101,6 +101,7 @@ const SettingsScreen = ({ navigation, }) => {
 
 const styles = StyleSheet.create({
     settingsContainer: {
+        backgroundColor: '#383838',
         width: '100%',
         height: '100%',
         padding: 16,

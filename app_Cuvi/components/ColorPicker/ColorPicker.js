@@ -8,7 +8,7 @@ const UncontrolledColorPicker = ({chosenColor}) => (
     <ColorPalette
       onChange={color => chosenColor(color)}
       colors={['#c78021','#C0392B', '#E74C3C', '#9B59B6', '#8E44AD', '#2980B9']}
-      title={"Escoge tu tema, lo usaremos tambien para tus CV:"}
+      title={" "}
       icon={
         <Text>✔</Text>
         // Icon can just be text or ASCII
