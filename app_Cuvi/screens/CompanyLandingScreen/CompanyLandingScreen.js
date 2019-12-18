@@ -48,7 +48,7 @@ const CompanyLandingScreen = ({ navigation }) => {
     return (
         <ScrollView style={styles.companyLanding}>
             <View style={styles.companyLanding_topButton}>
-                {jobs.length === 0 && <Image style={styles.companyLanding_emptyImage} source={require('../../icons/emptyState.png')} />}
+                {jobs.length === 0 && <Image style={styles.companyLanding_emptyImage} source={require('../../icons/emptyState_opt.png')} />}
                 {jobs.length === 0 && <Text style={styles.companyLanding_Text}>Vaya, parece que aún no has publicado ninguna oferta de trabajo.</Text>}
                 <CuviButton name='Nueva oferta' textColor='white' bgColor='#c78021' clickedEvent={newOffer} />
             </View>
