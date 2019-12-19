@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { ActivityIndicator, AsyncStorage, Button, StatusBar, StyleSheet, View } from 'react-native';
 
+import CuviLoader from '../../components/CuviLoader'
+
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../redux/actions/userActions';
 
@@ -47,10 +49,11 @@ const AuthLoadingScreen = ({ navigation }) => {
 
     // Render any loading content that you like here
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <ActivityIndicator />
-            <StatusBar barStyle="default" />
-        </View>
+        // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        //     <ActivityIndicator />
+        //     <StatusBar barStyle="default" />
+        // </View>
+        <CuviLoader />
     );
 }
 
