@@ -56,7 +56,7 @@ const CustomDataScreen = ({ navigation }) => {
 
                     <CuviDatePicker placeholder='Fecha de nacimiento' id='cvBirthday' datePickerValueFunction={setInputValue} datePickerValueGet={cvData.cvBirthday} />
 
-                    <CuviInput background='noBackground' id='cvTelephone' inputValueFunction={setInputValue} inputValueGet={cvData.cvTelephone} showLabel label='Teléfono' placeholder='666777999' textColor='#383838' typeInput='text' />
+                    <CuviInput background='noBackground' id='cvTelephone' inputValueFunction={setInputValue} inputValueGet={cvData.cvTelephone} showLabel label='Teléfono' placeholder='666777999' textColor='#383838' typeInput='telephoneNumber' />
 
                     <CuviInput background='noBackground' id='cvEmail' inputValueFunction={setInputValue} inputValueGet={cvData.cvEmail} showLabel label='Correo electrónico' placeholder='micorreo@ejemplo.com' textColor='#383838' typeInput='email-address' />
 

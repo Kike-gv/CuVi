@@ -75,7 +75,7 @@ const CuviInput = ({ id, label, placeholder, inputValueFunction, inputValueGet, 
                         }}
                         value={inputValueGet}
                         secureTextEntry={true}
-                        placeholderTextColor={textColor}
+                        placeholderTextColor={'#949494'}
                     />
                     {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
                 </View>
@@ -92,11 +92,29 @@ const CuviInput = ({ id, label, placeholder, inputValueFunction, inputValueGet, 
                         value={inputValueGet}
                         keyboardType={typeInput}
                         selectTextOnFocus={true}
-                        placeholderTextColor={textColor}
+                        placeholderTextColor={'#949494'}
                     />
                     {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
                 </View>
             );
+            case 'telephoneNumber':
+                return (
+                    <View style={{ position: 'relative', width: '100%' }}>
+                        <TextInput
+                            style={styles.cuviInput}
+                            placeholder={placeholder}
+                            onChangeText={(text) => {
+                                inputValueFunction(text, id);
+                            }}
+                            value={inputValueGet}
+                            textContentType={typeInput}
+                            keyboardType={'numeric'}
+                            selectTextOnFocus={true}
+                            placeholderTextColor={'#949494'}
+                        />
+                        {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
+                    </View>
+                );
         case 'multiline':
             return (
                 <View style={{ position: 'relative', width: '100%' }}>
@@ -110,7 +128,7 @@ const CuviInput = ({ id, label, placeholder, inputValueFunction, inputValueGet, 
                         numberOfLines={5}
                         value={inputValueGet}
                         selectTextOnFocus={true}
-                        placeholderTextColor={textColor}
+                        placeholderTextColor={'#949494'}
                     />
                     {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
                 </View>
@@ -126,7 +144,7 @@ const CuviInput = ({ id, label, placeholder, inputValueFunction, inputValueGet, 
                         }}
                         value={inputValueGet}
                         selectTextOnFocus={true}
-                        placeholderTextColor={textColor}
+                        placeholderTextColor={'#949494'}
                     />
                     {showLabel && <Text style={styles.cuviInput_text}>{label}</Text>}
                 </View>
