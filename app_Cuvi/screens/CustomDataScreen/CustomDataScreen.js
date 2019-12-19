@@ -19,11 +19,11 @@ const CustomDataScreen = ({ navigation }) => {
 
     const [cvData, setCvData] = useState({ ...userRedux });
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        console.log("TCL: CustomDataScreen -> cvData.cvEmail", cvData.cvEmail)
+    //     console.log("TCL: CustomDataScreen -> cvData.cvEmail", cvData.cvEmail)
 
-    }, [cvData.cvEmail])
+    // }, [cvData.cvEmail])
 
     const setInputValue = (value, id) => {
         setCvData({ ...cvData, [id]: value });
