@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "CuVi",
-    "slug": "app_cuvi",
+    "name": "CuVi_v2",
+    "slug": "app_cuvi_v2",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -35,6 +35,6 @@
       "barStyle": "dark-content",
       "backgroundColor": "#000000"
     },
-    "description": "version dark mode"
+    "description": "delete offers"
   }
 }
