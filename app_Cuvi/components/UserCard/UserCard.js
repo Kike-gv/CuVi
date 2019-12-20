@@ -26,7 +26,7 @@ const UserCard = ({ profileImage, userCVInfo, bgColor }) => {
         userCard_userPhoto: {
             width: 100,
             height: 100,
-            borderRadius: 100,
+            borderRadius: 50,
         },
         userCard_userName: {
             fontSize: 24,
