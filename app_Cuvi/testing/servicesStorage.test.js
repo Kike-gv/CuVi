@@ -15,10 +15,9 @@ describe('Testing del upload de una imagen  servidor', () => {
 
 
     it('extraemos una imagen de la galeria y la enviamos a una libreria llamada Jest', async () => {
-
-        console.log(`${__dirname}/../icons/logo.png`);
-        console.log('cuvi/src/icons/logo.png');
-        const uri = `cuvi/src/icons/logo.png`;
+        const absoluteUri = `file://${__dirname}/../icons/logo.png`;
+        console.logabsoluteUri
+        const uri = absoluteUri;
         const nombreImagen = 'JestTest';
         let imageUpload = await uploadFile(uri, nombreImagen);
         console.log("TCL: imageUpload", imageUpload)
