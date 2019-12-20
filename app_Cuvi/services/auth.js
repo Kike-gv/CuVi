@@ -11,8 +11,9 @@ async function login(email, password) {
   return !!result;
 }
 
-function logout() {
-  firebase.auth().signOut();
+async function logout() {
+  const result = await firebase.auth().signOut();
+  return !!result;
 }
 
 function registerAuthObserver(callback) {

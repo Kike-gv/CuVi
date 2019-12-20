@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, ScrollView, ImageBackground, TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import { Text, View, Image, ScrollView, ImageBackground, TouchableOpacity, Alert, StyleSheet, Dimensions } from 'react-native';
 
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../redux/actions/userActions';
@@ -13,6 +13,7 @@ import CuviButton from '../../components/CuviButton';
 
 let IconComponent = Ionicons;
 
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 const CompanyLandingScreen = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -82,8 +83,9 @@ const CompanyLandingScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 )}
             </View>
-
-            <CuviButton name='Log out' icon='md-exit' textColor='white' bgColor='#555555' clickedEvent={signOutAsync} style={styles.companyLanding_bottom} />
+            <View style={styles.companyLanding_bottom} >
+                <CuviButton name='Log out' icon='md-exit' textColor='white' bgColor='#555555' clickedEvent={signOutAsync} />
+            </View>
         </ScrollView>
     );
 }
@@ -92,6 +94,7 @@ const styles = StyleSheet.create({
     companyLanding: {
         padding: 16,
         backgroundColor: '#383838',
+        height: screenHeight,
     },
     companyLanding_topButton: {
         marginTop: 32,
