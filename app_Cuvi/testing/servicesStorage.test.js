@@ -15,7 +15,10 @@ describe('Testing del upload de una imagen  servidor', () => {
 
 
     it('extraemos una imagen de la galeria y la enviamos a una libreria llamada Jest', async () => {
-        const uri = 'https://s03.s3c.es/imag/_v0/770x420/0/5/3/darth-vader.jpg';
+
+        console.log(`${__dirname}/../icons/logo.png`);
+        console.log('cuvi/src/icons/logo.png');
+        const uri = `cuvi/src/icons/logo.png`;
         const nombreImagen = 'JestTest';
         let imageUpload = await uploadFile(uri, nombreImagen);
         console.log("TCL: imageUpload", imageUpload)
