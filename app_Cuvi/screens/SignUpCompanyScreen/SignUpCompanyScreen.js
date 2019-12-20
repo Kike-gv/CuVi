@@ -37,7 +37,7 @@ const SignUpCompanyScreen = ({ navigation }) => {
                         user.uid
                     );
                     if (result) {
-                        navigation.navigate('CompanyScreens');
+                        navigation.navigate('AuthLoading');
                     }
                 }
             }

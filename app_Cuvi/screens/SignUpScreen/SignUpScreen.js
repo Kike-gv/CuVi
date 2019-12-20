@@ -37,7 +37,7 @@ const SignUpScreen = ({ navigation }) => {
                         user.uid
                     );
                     if (result) {
-                        navigation.navigate('ApplicationScreens');
+                        navigation.navigate('AuthLoading');
                     }
                 }
             }
